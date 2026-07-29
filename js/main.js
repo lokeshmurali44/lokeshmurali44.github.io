@@ -301,7 +301,8 @@
     let pageStepLocked = false;
     let pageStepToken = 0;
     let pageStepUnlockTimer;
-    let sectionStepReadyAt = 0;
+    let pageStepInputType = null;
+    let wheelInputReadyAt = 0;
     let cachedPageStops = null;
     let wheelGestureResetTimer;
     const wheelGesture = {
@@ -310,10 +311,21 @@
       consumed: false,
       packetCount: 0,
       lastEventAt: 0,
+      inputType: null,
     };
-    const WHEEL_GESTURE_GAP = 180;
-    const WHEEL_TRIGGER_DISTANCE = 48;
-    const WHEEL_DISCRETE_DELTA = 72;
+    const WHEEL_GESTURE_GAP = 150;
+    const WHEEL_TRIGGER_DISTANCE = 44;
+    const WHEEL_DISCRETE_DELTA = 64;
+    const WHEEL_DISCRETE_EVENT_GAP = 90;
+
+    const clearWheelGesture = () => {
+      wheelGesture.direction = 0;
+      wheelGesture.distance = 0;
+      wheelGesture.consumed = false;
+      wheelGesture.packetCount = 0;
+      wheelGesture.lastEventAt = 0;
+      wheelGesture.inputType = null;
+    };
 
     const resetWheelGesture = () => {
       window.clearTimeout(wheelGestureResetTimer);
@@ -322,19 +334,14 @@
         0,
         WHEEL_GESTURE_GAP - (now - wheelGesture.lastEventAt)
       );
-      const cooldownRemaining = Math.max(0, sectionStepReadyAt - now);
-      if (pageStepLocked || quietRemaining > 0 || cooldownRemaining > 0) {
+      if (pageStepLocked || quietRemaining > 0) {
         wheelGestureResetTimer = window.setTimeout(
           resetWheelGesture,
-          Math.max(80, quietRemaining, cooldownRemaining)
+          Math.max(50, quietRemaining)
         );
         return;
       }
-      wheelGesture.direction = 0;
-      wheelGesture.distance = 0;
-      wheelGesture.consumed = false;
-      wheelGesture.packetCount = 0;
-      wheelGesture.lastEventAt = 0;
+      clearWheelGesture();
     };
 
     const scheduleWheelGestureReset = () => {
@@ -416,6 +423,15 @@
         ...journeyStops.map((top) => ({ top, section: 'about', type: 'journey' })),
         ...workStops.map((top) => ({ top, section: 'projects', type: 'work' })),
       ];
+
+      if (capabilities) {
+        const capabilitiesTop = capabilities.getBoundingClientRect().top + window.scrollY;
+        stages.push({
+          top: capabilitiesTop,
+          section: 'capabilities',
+          type: 'section',
+        });
+      }
 
       const addSectionStops = (selector, section) => {
         const element = qs(selector);
@@ -528,9 +544,15 @@
             window.requestAnimationFrame(() => window.requestAnimationFrame(alignCapabilityToProofLine));
           }
         }
-        const momentumCooldown = wheelGesture.packetCount > 2 ? 900 : 700;
-        sectionStepReadyAt = Date.now() + momentumCooldown;
+        const usedTrackpad = pageStepInputType === 'trackpad';
+        wheelInputReadyAt = Date.now() + (usedTrackpad ? 140 : 70);
         pageStepLocked = false;
+        pageStepInputType = null;
+        if (usedTrackpad) {
+          scheduleWheelGestureReset();
+        } else {
+          clearWheelGesture();
+        }
       };
 
       // Lenis can occasionally lose its completion callback when ScrollTrigger
@@ -563,31 +585,35 @@
 
       const now = Date.now();
       const direction = delta > 0 ? 1 : -1;
+      const eventGap = wheelGesture.lastEventAt ? now - wheelGesture.lastEventAt : Number.POSITIVE_INFINITY;
+      const isDiscreteWheel = event.deltaMode !== WheelEvent.DOM_DELTA_PIXEL
+        || Math.abs(delta) >= WHEEL_DISCRETE_DELTA;
       wheelGesture.packetCount += 1;
       wheelGesture.lastEventAt = now;
+      wheelGesture.inputType = isDiscreteWheel ? 'wheel' : 'trackpad';
       scheduleWheelGestureReset();
 
       if (pageStepLocked) {
-        wheelGesture.consumed = true;
-        wheelGesture.distance = 0;
         return;
       }
 
-      if (now < sectionStepReadyAt) {
-        wheelGesture.consumed = true;
-        wheelGesture.distance = 0;
+      if (now < wheelInputReadyAt) {
         return;
       }
 
-      if (wheelGesture.consumed) return;
       if (wheelGesture.direction && wheelGesture.direction !== direction) {
         wheelGesture.distance = 0;
+        wheelGesture.consumed = false;
+        wheelGesture.packetCount = 1;
+      } else if (isDiscreteWheel && eventGap >= WHEEL_DISCRETE_EVENT_GAP) {
+        wheelGesture.consumed = false;
+        wheelGesture.distance = 0;
+        wheelGesture.packetCount = 1;
       }
       wheelGesture.direction = direction;
+      if (wheelGesture.consumed) return;
       wheelGesture.distance += Math.min(Math.abs(delta), WHEEL_DISCRETE_DELTA);
 
-      const isDiscreteWheel = event.deltaMode !== WheelEvent.DOM_DELTA_PIXEL
-        || Math.abs(delta) >= WHEEL_DISCRETE_DELTA;
       if (!isDiscreteWheel && wheelGesture.distance < WHEEL_TRIGGER_DISTANCE) return;
 
       wheelGesture.consumed = true;
@@ -600,6 +626,7 @@
         : [...stages].reverse().find((stage) => stage.top < y - 48);
       if (!destination) return;
 
+      pageStepInputType = isDiscreteWheel ? 'wheel' : 'trackpad';
       runPageStep(destination);
     };
     window.addEventListener('wheel', stepThroughPage, { passive: false, capture: true });
