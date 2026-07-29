@@ -1,0 +1,827 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    window.addEventListener('pageshow', function () {
+      window.requestAnimationFrame(function () {
+        if (window.lenis) window.lenis.scrollTo(0, { immediate: true, force: true });
+        window.scrollTo(0, 0);
+        document.body.classList.remove('page--interior', 'page--dark', 'page--work-entering', 'is-work-transitioning');
+        document.documentElement.classList.remove('is-work-transitioning');
+        document.body.dataset.section = 'home';
+        document.documentElement.dataset.section = 'home';
+        window.ScrollTrigger?.update();
+      });
+    });
+  </script>
+  <title>Fintech & Web3 Design Leader - Lokesh Murali | LOKESH(R)</title>
+  <meta name="description" content="Lokesh Murali - Head of Design across Sparkout Tech, BlockchainX & Transgenie. 12+ years designing fintech, Web3 and B2B SaaS products. Design, applied differently.">
+  <meta name="theme-color" content="#DEDACD">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lokesh Murali - Fintech & Web3 Design Leader">
+  <meta property="og:description" content="12+ years turning complex fintech, Web3 and B2B SaaS products into clear, trusted experiences.">
+  <meta property="og:image" content="img/profile-matte-preview.jpg">
+  <meta property="og:site_name" content="Lokesh Murali Portfolio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lokesh Murali - Fintech & Web3 Design Leader">
+  <meta name="twitter:description" content="Design leadership, product strategy and AI-assisted delivery for ambitious digital products.">
+  <meta name="twitter:image" content="img/profile-matte-preview.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/lenis.css">
+  <link rel="stylesheet" href="css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/style.css?v=20260722an">
+  <link rel="stylesheet" href="css/rebuild.css?v=20260729v">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23EFFF00'/><text x='50' y='70' font-size='50' font-family='Arial Black' font-weight='900' text-anchor='middle' fill='%23111111'>L</text></svg>">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Lokesh Murali",
+      "jobTitle": "Head of Design",
+      "description": "Fintech, Web3 and B2B SaaS design leader with 12+ years of experience.",
+      "email": "mailto:lokeshmurali44@gmail.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/lokeshmurali/",
+        "https://www.behance.net/sparkouttech"
+      ],
+      "knowsAbout": ["Product Design", "UX Design", "Fintech", "Web3", "Design Systems", "Design Leadership"]
+    }
+  </script>
+</head>
+<body>
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="side" id="side">
+    <div class="side__card side__brand">
+      <div class="side__brand-row">
+        <a href="#home" class="side__logo">LOKESH</a>
+        <div class="side__socials">
+          <a href="https://www.linkedin.com/in/lokeshmurali/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <img src="img/side-social-2.svg" alt="">
+          </a>
+          <a href="https://www.behance.net/sparkouttech" target="_blank" rel="noopener" aria-label="Behance">
+            <img src="img/side-social-1.svg" alt="">
+          </a>
+        </div>
+      </div>
+      <p class="side__blurb">Leading design for products that move money, assets and trust - across fintech, Web3 and B2B SaaS.</p>
+    </div>
+
+    <div class="side__card side__stats">
+      <div class="side__stat">
+        <b>50+</b><span>Total No of<br>Projects</span>
+      </div>
+      <i class="side__divider"></i>
+      <div class="side__stat">
+        <b>12+</b><span>Years of<br>experience</span>
+      </div>
+    </div>
+
+    <nav class="side__card side__nav" aria-label="Primary">
+      <a href="#home" class="side__link is-active" data-spy="home">
+        <img src="img/side-home.svg" alt="">
+        Home
+      </a>
+      <a href="#about" class="side__link" data-spy="about">
+        <img src="img/side-about.svg" alt="">
+        About Me
+      </a>
+      <a href="#projects" class="side__link" data-spy="projects">
+        <img src="img/side-projects.svg" alt="">
+        Projects
+      </a>
+      <a href="#capabilities" class="side__link" data-spy="capabilities">
+        <img src="img/side-capabilities.svg" alt="">
+        What I Bring
+      </a>
+      <a href="#leadership" class="side__link" data-spy="leadership">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8H4z"/></svg>
+        Leadership
+      </a>
+      <a href="#how-i-work" class="side__link" data-spy="how-i-work">
+        <img src="img/side-services.svg" alt="">
+        How I Work
+      </a>
+      <a href="#recommendations" class="side__link" data-spy="recommendations">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h16v12H9l-5 4V4zm4 4v2h8V8H8zm0 4v2h5v-2H8z"/></svg>
+        Recommendations
+      </a>
+    </nav>
+
+    <div class="side__card side__brands" aria-hidden="true">
+      <div class="side__brands-track">
+        <span>Sparkout</span><i>*</i><span>BlockchainX</span><i>*</i><span>Transgenie</span><i>*</i><span>Codespot</span><i>*</i>
+        <span>Sparkout</span><i>*</i><span>BlockchainX</span><i>*</i><span>Transgenie</span><i>*</i><span>Codespot</span><i>*</i>
+      </div>
+    </div>
+
+    <button class="side__card side__email" id="copyEmail" title="Copy email">
+      <span id="copyEmailText">lokeshmurali44@gmail.com</span>
+      <img src="img/side-copy.svg" alt="">
+    </button>
+
+    <a href="#book" class="side__cta" data-booking>Let's Talk</a>
+  </aside>
+
+  <!-- ================= MOBILE TOP BAR ================= -->
+  <header class="mobilebar" id="mobilebar">
+    <a href="#home" class="side__logo">LOKESH<sup>(R)</sup></a>
+    <button class="mobilebar__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <div class="mobilemenu" id="mobileMenu">
+    <nav aria-label="Mobile">
+      <a href="#home">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#projects">Projects</a>
+      <a href="#capabilities">What I Bring</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#how-i-work">How I Work</a>
+      <a href="#recommendations">Recommendations</a>
+      <a href="#book" class="mobilemenu__cta" data-booking>Let's Talk</a>
+    </nav>
+  </div>
+
+  <!-- ================= MAIN ================= -->
+  <main class="main" id="home">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero__pin">
+      <h1 class="hero__giant" aria-label="Lokesh">
+        <span class="hero__giant-scale"><i>L</i><i>O</i><i>K</i><i>E</i><i>S</i><i>H</i></span>
+      </h1>
+
+      <nav class="hero__nav" aria-label="Portfolio sections">
+        <a href="#home" class="hero__nav-link is-active">Home</a>
+        <a href="#about" class="hero__nav-link">About me</a>
+        <a href="#projects" class="hero__nav-link">Projects</a>
+        <a href="#capabilities" class="hero__nav-link">What I bring</a>
+        <a href="#leadership" class="hero__nav-link">Leadership</a>
+        <a href="#how-i-work" class="hero__nav-link">How I work</a>
+        <a href="#recommendations" class="hero__nav-link">Recommendations</a>
+      </nav>
+
+      <div class="hero__stage">
+        <!-- Replace the silhouette with your photo: drop img/profile.png (transparent PNG works best) -->
+        <div class="hero__photo" id="heroPhoto">
+          <img src="img/profile.png" alt="Lokesh Murali" onerror="this.parentElement.classList.add('hero__photo--fallback'); this.remove()">
+          <svg class="hero__silhouette" viewBox="0 0 400 480" aria-hidden="true">
+            <path d="M200 40c-55 0-92 42-92 100 0 40 16 78 40 98-64 22-108 78-118 162-2 18 8 40 30 40h280c22 0 32-22 30-40-10-84-54-140-118-162 24-20 40-58 40-98 0-58-37-100-92-100z" fill="#191919"/>
+          </svg>
+        </div>
+
+        <div class="hero__chip hero__chip--stats">
+          <div class="hero__chip-stat"><b>50+</b><span>Products<br>shipped</span></div>
+          <i></i>
+          <div class="hero__chip-stat"><b>12+</b><span>Years of<br>experience</span></div>
+        </div>
+
+        <ul class="hero__chip hero__chip--traits">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>Creative</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Strategist</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"/></svg>Web3-Native</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>AI-Powered</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 8l11 5 11-5-11-5zM5 12v4c0 1.7 3.1 3 7 3s7-1.3 7-3v-4l-7 3.2L5 12z"/></svg>Mentor</li>
+        </ul>
+
+        <div class="hero__headline">
+          <h2>Design,<br>Applied<br><em>Differently.</em></h2>
+        </div>
+      </div>
+
+      <div class="hero__foot">
+        <p class="hero__tag">The Design Leader.<br>That's Lokesh.</p>
+        <div class="hero__actions">
+          <a href="#book" class="btn btn--yellow" data-booking>Book a Call</a>
+          <a href="#about" class="btn btn--yellow btn--secondary">About Me</a>
+        </div>
+        <p class="hero__sub">Leading a 10-person studio and three product design functions - merging craft, strategy and AI-powered delivery.</p>
+      </div>
+      </div>
+    </section>
+
+    <!-- ============ DIVIDER MARQUEE ============ -->
+    <div class="tape" aria-hidden="true">
+      <div class="tape__track">
+        <span>Start Small</span><i>*</i><span>Grow Big</span><i>*</i><span>Design That Ships</span><i>*</i><span>Fintech</span><i>*</i><span>Web3</span><i>*</i><span>B2B SaaS</span><i>*</i>
+        <span>Start Small</span><i>*</i><span>Grow Big</span><i>*</i><span>Design That Ships</span><i>*</i><span>Fintech</span><i>*</i><span>Web3</span><i>*</i><span>B2B SaaS</span><i>*</i>
+      </div>
+    </div>
+
+    <!-- ============ ABOUT / JOURNEY ============ -->
+    <section class="journey" id="about">
+      <div class="sec-head">
+        <span class="pill">About Me (&amp;) My Journey</span>
+        <h2 class="sec-title">About Me (&amp;)<br>My Journey</h2>
+        <p class="sec-sub">Twelve years ago I made my first creative. What happened after is easier to show than explain.</p>
+      </div>
+
+      <div class="journey__grid">
+        <svg class="journey__path" aria-hidden="true" preserveAspectRatio="none">
+          <path class="journey__path-base"></path>
+          <path class="journey__path-progress"></path>
+        </svg>
+        <div class="journey__traveller" aria-hidden="true"><span>LM</span></div>
+        <article class="jcard reveal">
+          <span class="jcard__year">'14</span>
+          <h3>Where the journey began</h3>
+          <p>First role after my Master's in Multimedia - social creatives for a dozen industries, and my first animated posts.</p>
+          <div class="jcard__foot">
+            <div class="jcard__handle"><i>v</i><div><b>@vsocialize</b><span>12 years ago</span></div></div>
+            <button class="jcard__more" data-more>Read more</button>
+          </div>
+          <div class="jcard__extra">Events, restaurants, jewellery, colleges, coffee shops - a genuine cross-industry range in just over a year. My multimedia background let me bring animation into static-heavy social feeds, and early landing-page layouts gave me my first taste of UI. This is where I learned that design changes with the brand, the audience and the platform.</div>
+        </article>
+
+        <article class="jcard reveal" data-delay="80">
+          <span class="jcard__year">'15</span>
+          <h3>First full product</h3>
+          <p>Pulse Plus Pharmacy - one of India's earliest prescription-delivery apps. I designed it end to end, in 2016.</p>
+          <div class="jcard__foot">
+            <div class="jcard__handle"><i>b</i><div><b>@brightbridge</b><span>11 years ago</span></div></div>
+            <button class="jcard__more" data-more>Read more</button>
+          </div>
+          <div class="jcard__extra">At Bright Bridge InfoTech I moved from executing design to leading it - onboarding, prescription upload, chat-based ordering, order tracking, delivery experience. My first complete product from the ground up, and my first time coordinating a team.</div>
+        </article>
+
+        <article class="jcard reveal" data-delay="160">
+          <span class="jcard__year">'17</span>
+          <h3>Building the studio</h3>
+          <p>Joined Sparkout Tech. What started as one designer became a 10-person studio serving global clients.</p>
+          <div class="jcard__foot">
+            <div class="jcard__handle"><i>s</i><div><b>@sparkout</b><span>9 years ago</span></div></div>
+            <button class="jcard__more" data-more>Read more</button>
+          </div>
+          <div class="jcard__extra">As Head of Design I own end-to-end delivery for fintech, AI and blockchain clients - from discovery and wireframes to shipped product - plus design-systems architecture, brand identity, and hiring and growing designers at every level.</div>
+        </article>
+
+        <article class="jcard reveal" data-delay="240">
+          <span class="jcard__year">'19</span>
+          <h3>The Web3 deep end</h3>
+          <p>BlockchainX. Crypto exchanges, DeFi, staking, NFT platforms - the most complex UX domain in tech.</p>
+          <div class="jcard__foot">
+            <div class="jcard__handle"><i>x</i><div><b>@blockchainx</b><span>7 years ago</span></div></div>
+            <button class="jcard__more" data-more>Read more</button>
+          </div>
+          <div class="jcard__extra">The challenge I solve daily: making decentralised financial products feel intuitive, trustworthy and accessible - without dumbing down the protocol. CEX, DEX, P2P, RWA tokenization, stablecoins and Web3 onboarding across 50+ product categories.</div>
+        </article>
+
+        <article class="jcard reveal" data-delay="320">
+          <span class="jcard__year">'21</span>
+          <h3>Designer to product owner</h3>
+          <p>Transgenie - blockchain traceability SaaS. The only role where I own the entire product design function.</p>
+          <div class="jcard__foot">
+            <div class="jcard__handle"><i>t</i><div><b>@transgenie</b><span>5 years ago</span></div></div>
+            <button class="jcard__more" data-more>Read more</button>
+          </div>
+          <div class="jcard__extra">Dashboards, digital product passports, compliance reporting (FSMA, EU FSR, ISO, FDA) for food, fashion, luxury and manufacturing clients across the US, Europe and Asia. This is where I operate as a product designer shaping a SaaS product against user needs and business goals.</div>
+        </article>
+
+        <article class="jcard reveal" data-delay="400">
+          <span class="jcard__year">'22</span>
+          <h3>Classrooms to careers</h3>
+          <p>UX workshops at 5+ colleges across Tamil Nadu. 7 students became interns. All 7 became designers.</p>
+          <div class="jcard__foot">
+            <div class="jcard__handle"><i>c</i><div><b>@codespot</b><span>4 years ago</span></div></div>
+            <button class="jcard__more" data-more>Read more</button>
+          </div>
+          <div class="jcard__extra">Through the Codespot Foundation I mentored each of them through their early careers: 2 are now at large MNCs, 2 grew into senior designers, 2 thrive as freelancers, 3 keep growing at Sparkout. The pipeline I'm most proud of.</div>
+        </article>
+
+        <article class="jcard jcard--now reveal" data-delay="480">
+          <span class="jcard__year">'26</span>
+          <h3>The AI chapter</h3>
+          <p>Designs that ship themselves - I now deliver production-ready HTML, CSS and React straight from design.</p>
+          <div class="jcard__foot">
+            <div class="jcard__handle"><i>L</i><div><b>@lokesh</b><span>2 hours ago</span></div></div>
+            <button class="jcard__more" data-more>Read more</button>
+          </div>
+          <div class="jcard__extra">Using Claude, OpenAI Codex and Antigravity I translate designs directly into production-ready frontend code. Clients get faster iteration, fewer translation errors, and a single point of accountability across the whole experience layer. Same obsession, new tools.</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ SELECTED WORK (dark) ============ -->
+    <section class="work" id="projects">
+      <div class="work__counter" aria-hidden="true"><span>01</span><i></i><b>09</b></div>
+      <div class="sec-head sec-head--row">
+        <div>
+          <span class="pill pill--ondark">Selected Work</span>
+          <h2 class="sec-title sec-title--ondark">Built for Web3,<br>Made to Perform</h2>
+        </div>
+        <p class="sec-intro">Over twelve years I've helped founders and enterprises across fintech, Web3, healthcare and SaaS turn complex products into experiences that feel effortless. Here's some of that work.</p>
+      </div>
+
+      <div class="work__rail" id="workRail">
+
+        <article class="wcard" data-theme="normax">
+          <div class="wcard__top">
+            <span class="wcard__num">01</span>
+            <div class="wcard__tags"><span>Tokenization</span><span>Brand</span><span>Dashboard</span></div>
+          </div>
+          <div class="wcard__art">
+            <img src="img/projects/normax.webp" alt="Normax Capital tokenized investment platform interface" loading="lazy">
+          </div>
+          <div class="wcard__body">
+            <h3>Normax Capital</h3>
+            <p>Licensed trust &amp; fiduciary platform for investing in tokenized real-world assets - designed brand to dashboard in an 8-week sprint.</p>
+            <a class="wcard__go" href="https://www.behance.net/gallery/248027915/Normax-Capital-Web3-Investment-Platform" target="_blank" rel="noopener" aria-label="View Normax Capital on Behance">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="wcard" data-theme="transgenie">
+          <div class="wcard__top">
+            <span class="wcard__num">02</span>
+            <div class="wcard__tags"><span>B2B SaaS</span><span>Design System</span><span>Compliance</span></div>
+          </div>
+          <div class="wcard__art">
+            <img src="img/projects/crypto-dashboard.webp" alt="Blockchain product dashboard interface" loading="lazy">
+          </div>
+          <div class="wcard__body">
+            <h3>Transgenie</h3>
+            <p>Blockchain traceability platform for food, fashion and luxury - I own the full product design function across three continents of clients.</p>
+            <a class="wcard__go" href="https://www.behance.net/sparkouttech" target="_blank" rel="noopener" aria-label="View Transgenie on Behance">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="wcard" data-theme="healix">
+          <div class="wcard__top">
+            <span class="wcard__num">03</span>
+            <div class="wcard__tags"><span>HealthTech</span><span>Mobile</span><span>Live</span></div>
+          </div>
+          <div class="wcard__art">
+            <img src="img/projects/healix.webp" alt="Healix health and wellness mobile product" loading="lazy">
+          </div>
+          <div class="wcard__body">
+            <h3>Healix - Blume Health</h3>
+            <p>Doctor-led medical weight-loss platform live in the UK, Netherlands and Germany - treatment, coaching and tracking in one calm app.</p>
+            <a class="wcard__go" href="https://www.behance.net/gallery/248704861/Healix-Health-Wellness-Mobile-App" target="_blank" rel="noopener" aria-label="View Healix on Behance">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="wcard" data-theme="wink">
+          <div class="wcard__top">
+            <span class="wcard__num">04</span>
+            <div class="wcard__tags"><span>Web3</span><span>Wallet</span><span>White-label</span></div>
+          </div>
+          <div class="wcard__art">
+            <img src="img/projects/crypto-wallet.webp" alt="White-label cryptocurrency wallet interface" loading="lazy">
+          </div>
+          <div class="wcard__body">
+            <h3>Wink Wallet</h3>
+            <p>Full-spectrum crypto wallet built as a rebrandable white-label product - 30 screens delivered in 40 hours by a two-designer team.</p>
+            <a class="wcard__go" href="https://www.behance.net/gallery/199909349/Crypto-Wallet" target="_blank" rel="noopener" aria-label="View Wink Wallet on Behance">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="wcard" data-theme="aidoc">
+          <div class="wcard__top">
+            <span class="wcard__num">05</span>
+            <div class="wcard__tags"><span>AI</span><span>SaaS</span><span>Dashboard</span></div>
+          </div>
+          <div class="wcard__art">
+            <img src="img/projects/ai-document.webp" alt="AI document analysis dashboard interface" loading="lazy">
+          </div>
+          <div class="wcard__body">
+            <h3>AI Document Analysis</h3>
+            <p>Upload, summarize and chat with any document - sub-30-second summaries at 95% key-point accuracy.</p>
+            <a class="wcard__go" href="https://www.behance.net/gallery/203286999/AI-Document-Analysis-Dashboard" target="_blank" rel="noopener" aria-label="View AI Document Analysis on Behance">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="wcard" data-theme="deeplens">
+          <div class="wcard__top">
+            <span class="wcard__num">06</span>
+            <div class="wcard__tags"><span>MedTech</span><span>Community</span></div>
+          </div>
+          <div class="wcard__art">
+            <img src="img/projects/doctor-social.webp" alt="Doctor collaboration and medical annotation product" loading="lazy">
+          </div>
+          <div class="wcard__body">
+            <h3>DeepLens</h3>
+            <p>A social platform exclusively for doctors - annotate medical images and collaborate on diagnoses. 70% reported better patient outcomes.</p>
+            <a class="wcard__go" href="https://www.behance.net/gallery/200741121/Doctor-Social-Media-App" target="_blank" rel="noopener" aria-label="View DeepLens on Behance">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="wcard" data-theme="bxfinance">
+          <div class="wcard__top">
+            <span class="wcard__num">07</span>
+            <div class="wcard__tags"><span>No-Code</span><span>Web3</span><span>Suite</span></div>
+          </div>
+          <div class="wcard__art">
+            <img src="img/projects/nft-marketplace.webp" alt="Web3 marketplace and finance product interface" loading="lazy">
+          </div>
+          <div class="wcard__body">
+            <h3>BX Finance</h3>
+            <p>No-code Web3 ecosystem - generate tokens, NFTs, staking and launchpads without writing a contract.</p>
+            <a class="wcard__go" href="https://www.behance.net/gallery/199002447/NFT-Marketplace-Platform" target="_blank" rel="noopener" aria-label="View BX Finance on Behance">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="wcard" data-theme="parkk">
+          <div class="wcard__top">
+            <span class="wcard__num">08</span>
+            <div class="wcard__tags"><span>Marketplace</span><span>Live in US</span></div>
+          </div>
+          <div class="wcard__art">
+            <img src="img/projects/minexchange.webp" alt="Marketplace product design case study" loading="lazy">
+          </div>
+          <div class="wcard__body">
+            <h3>Parkk</h3>
+            <p>Peer-to-peer parking marketplace, shipped and live across the US - designed for underserved needs like EV charging and RV spots.</p>
+            <a class="wcard__go" href="https://www.behance.net/gallery/216492623/The-MineXchange-Mining-Marketplace" target="_blank" rel="noopener" aria-label="View Parkk on Behance">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="wcard" data-theme="layeronex">
+          <div class="wcard__top">
+            <span class="wcard__num">09</span>
+            <div class="wcard__tags"><span>Web3</span><span>Community</span><span>15-day sprint</span></div>
+          </div>
+          <div class="wcard__art">
+            <img src="img/projects/pik-chat.webp" alt="Community and communications product interface" loading="lazy">
+          </div>
+          <div class="wcard__body">
+            <h3>LayerOneX</h3>
+            <p>Developer community platform with QR-coded event attendance - designed and delivered in a 15-day sprint.</p>
+            <a class="wcard__go" href="https://www.behance.net/gallery/190265931/Chat-App-Pik-Chat" target="_blank" rel="noopener" aria-label="View LayerOneX on Behance">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="wcard wcard--all" data-theme="all">
+          <div class="wcard__allinner">
+            <h3>12+ more on Behance</h3>
+            <p>EKTA NFT, MineXchange, PIK Chat, RentalSlew, EduPlus, AOC and more.</p>
+            <a href="https://www.behance.net/sparkouttech" target="_blank" rel="noopener" class="btn btn--yellow">View Full Portfolio</a>
+          </div>
+        </article>
+      </div>
+      <p class="work__hint" aria-hidden="true">Scroll to explore</p>
+    </section>
+
+    <!-- ============ WHAT I BRING ============ -->
+    <section class="caps" id="capabilities">
+      <div class="caps__layout">
+        <header class="caps__heading">
+          <span class="pill">What I Bring</span>
+          <h2 class="caps__title">Leadership that turns complexity into shipped products.</h2>
+        </header>
+
+        <div class="caps__content">
+          <div class="caps__intro">
+            <p class="caps__summary">I combine product strategy, domain expertise, scalable systems, team leadership &amp; AI-assisted delivery to move complex products from ambiguity to launch.</p>
+            <div class="caps__path" aria-label="Strategy through delivery">
+              <span>Strategy</span><i aria-hidden="true"></i>
+              <span>Systems</span><i aria-hidden="true"></i>
+              <span>Ship</span>
+            </div>
+          </div>
+
+          <div class="caps__proofs">
+            <article class="cap">
+              <span class="cap__num">01</span>
+              <div class="cap__body">
+                <p class="cap__eyebrow">Product Direction</p>
+                <h3>From ambiguity to products teams can ship.</h3>
+                <p class="cap__desc">I translate technical requirements, business constraints and user needs into clear journeys, priorities and UX decisions.</p>
+                <ul class="cap__evidence" aria-label="Product direction evidence">
+                  <li>Normax: brand to dashboard</li>
+                  <li>Healix: live in 3 countries</li>
+                  <li>Transgenie: multi-industry SaaS</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="cap">
+              <span class="cap__num">02</span>
+              <div class="cap__body">
+                <p class="cap__eyebrow">Complex Domain Fluency</p>
+                <h3>Fluent where trust is part of the interface.</h3>
+                <p class="cap__desc">12+ years across fintech, Web3, AI, healthcare and B2B SaaS - including tokenization, DeFi, wallets, traceability and regulated workflows.</p>
+                <ul class="cap__evidence" aria-label="Domain expertise">
+                  <li>Tokenization, DeFi and wallets</li>
+                  <li>Healthcare journeys</li>
+                  <li>Compliance and traceability</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="cap">
+              <span class="cap__num">03</span>
+              <div class="cap__body">
+                <p class="cap__eyebrow">Systems That Scale</p>
+                <h3>Designed once. Useful everywhere.</h3>
+                <p class="cap__desc">Reusable systems for white-label, multi-product and multi-platform experiences across web, mobile and data-heavy dashboards.</p>
+                <ul class="cap__evidence" aria-label="Design system evidence">
+                  <li>Pik Chat: 170 screens</li>
+                  <li>270+ reusable components</li>
+                  <li>White-label product systems</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="cap">
+              <span class="cap__num">04</span>
+              <div class="cap__body">
+                <p class="cap__eyebrow">Design Leadership</p>
+                <h3>I raise the quality of the team, not only the screen.</h3>
+                <p class="cap__desc">I lead a 10-person design studio, own client relationships and grow designers through mentoring, reviews and shared quality standards.</p>
+                <ul class="cap__evidence" aria-label="Leadership evidence">
+                  <li>10-person design studio</li>
+                  <li>Head of Design across 3 companies</li>
+                  <li>7 designers mentored</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="cap">
+              <span class="cap__num">05</span>
+              <div class="cap__body">
+                <p class="cap__eyebrow">Design-to-Code Acceleration</p>
+                <h3>Less handoff. Faster validation.</h3>
+                <p class="cap__desc">I use Claude and OpenAI Codex to turn approved designs into working HTML, CSS and React experiences, reducing translation loss between design and development.</p>
+                <ul class="cap__evidence" aria-label="Design-to-code outcomes">
+                  <li>Working prototypes</li>
+                  <li>Implementation-ready frontend</li>
+                  <li>One owner from UX to delivery</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LEADERSHIP ============ -->
+    <section class="leadership" id="leadership">
+      <div class="sec-head">
+        <span class="pill">Leadership</span>
+        <h2 class="sec-title">I build teams<br>that ship better.</h2>
+        <p class="sec-sub">My role is bigger than approving screens. I create the clarity, standards and working environment that help designers &amp; engineers deliver stronger products together.</p>
+      </div>
+
+      <div class="leadership__grid">
+        <article class="lcard reveal">
+          <p class="lcard__eyebrow">01 / Team quality</p>
+          <h3>I Grow Designers,<br>not Dependencies.</h3>
+          <p class="lcard__metric"><b>10</b><span>Person<br>Design studio</span></p>
+          <p class="lcard__desc">I build review habits, shared standards and ownership so quality improves across the team, not only when I am in the room.</p>
+          <ul>
+            <li>Hiring, onboarding, and mentoring designers through structured guidance</li>
+            <li>Established critique rituals, guiding seven designers into successful professional roles.</li>
+          </ul>
+        </article>
+
+        <article class="lcard lcard--featured reveal" data-delay="100">
+          <p class="lcard__eyebrow">02 / Product direction</p>
+          <h3>I Turn Ambiguity<br>into Shared Direction.</h3>
+          <p class="lcard__metric"><b>3</b><span>Design<br>Functions Led</span></p>
+          <p class="lcard__desc">At Sparkout, BlockchainX &amp; Transgenie, I align business goals, user needs, and technical limits before solutions are chosen.</p>
+          <ul>
+            <li>Discovery, stakeholder alignment, and strategic product framing</li>
+            <li>Clear experience priorities across complex product ecosystems</li>
+          </ul>
+        </article>
+
+        <article class="lcard reveal" data-delay="200">
+          <p class="lcard__eyebrow">03 / Delivery standards</p>
+          <h3>I Protect Intent<br>Through Delivery.</h3>
+          <p class="lcard__metric"><b>50+</b><span>Products<br>Shipped</span></p>
+          <p class="lcard__desc">I stay close to implementation through design systems, engineering reviews, and AI-assisted frontend work, bridging design and product.</p>
+          <ul>
+            <li>Scalable design systems, reusable patterns, and functional React prototypes</li>
+            <li>Engineering collaboration supported by consistent UX quality checks</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ LEADERSHIP MANIFESTO ============ -->
+    <section class="bigcta leadership__manifesto">
+      <h2 class="bigcta__title">
+        <span class="bigcta__solid">Better Teams Make</span>
+        <span class="bigcta__solid">Better Decisions.</span>
+        <span class="bigcta__ghost">Better Decisions</span>
+        <span class="bigcta__ghost">Make Better</span>
+        <span class="bigcta__ghost">Products.</span>
+      </h2>
+      <p class="bigcta__sub">I bring hands-on craft, product judgment and team leadership into one operating model, so quality can scale without slowing delivery.</p>
+    </section>
+
+    <!-- ============ HOW I WORK ============ -->
+    <section class="workflow" id="how-i-work">
+      <div class="sec-head sec-head--row">
+        <div>
+          <span class="pill">How I Work</span>
+          <h2 class="sec-title">From ambiguity<br>to shipped product.</h2>
+        </div>
+        <p class="sec-sub">The method flexes with the product, but the sequence stays deliberate: understand the system, make the problem clear, build shared direction and stay accountable through delivery.</p>
+      </div>
+
+      <div class="workflow__steps">
+        <article class="wstep reveal">
+          <p class="wstep__eyebrow">Understand</p>
+          <h3>Read the whole system.</h3>
+          <p>I learn the business model, users, technology, risk and constraints before deciding what the interface should become.</p>
+          <span class="wstep__output">Discovery / domain model / stakeholder alignment</span>
+        </article>
+        <article class="wstep reveal" data-delay="70">
+          <p class="wstep__eyebrow">Frame</p>
+          <h3>Make the right problem visible.</h3>
+          <p>I map roles, journeys, decisions and edge cases, then turn scattered inputs into a product direction the team can act on.</p>
+          <span class="wstep__output">Problem frame / journeys / experience principles</span>
+        </article>
+        <article class="wstep reveal" data-delay="140">
+          <p class="wstep__eyebrow">Align</p>
+          <h3>Build shared direction early.</h3>
+          <p>Wireframes and prototypes help product, engineering, and stakeholders resolve uncertainty early.</p>
+          <span class="wstep__output">Flows / wireframes / prototypes / decisions</span>
+        </article>
+        <article class="wstep reveal" data-delay="210">
+          <p class="wstep__eyebrow">Systemise</p>
+          <h3>Design for the next release too.</h3>
+          <p>I create reusable components, tokens and interaction rules that keep the product coherent as teams and feature sets grow.</p>
+          <span class="wstep__output">UI direction / design system / interaction rules</span>
+        </article>
+        <article class="wstep wstep--wide reveal" data-delay="280">
+          <p class="wstep__eyebrow">Ship and learn</p>
+          <h3>Stay accountable through production.</h3>
+          <p>I work with engineers, review implementation, validate the experience and use AI-assisted frontend workflows when they shorten the path from approved design to working product.</p>
+          <span class="wstep__output">Engineering review / UX QA / working frontend / iteration</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ LINKEDIN RECOMMENDATIONS ============ -->
+    <section class="recommendations" id="recommendations">
+      <div class="recommendations__head">
+        <div class="recommendations__topline">
+          <span class="pill">Recommendations</span>
+          <a class="recommendations__all" href="https://www.linkedin.com/in/lokeshmurali/details/recommendations/" target="_blank" rel="noopener">View all on LinkedIn <span aria-hidden="true">&nearr;</span></a>
+        </div>
+        <h2 class="sec-title">What people say<br>about working with me</h2>
+        <p class="sec-sub">Received on LinkedIn from leaders, peers and designers I have managed. Their perspective is the strongest proof of how I lead when the work gets real.</p>
+      </div>
+
+      <div class="recommendations__carousel swiper" aria-label="LinkedIn recommendations">
+        <div class="swiper-wrapper">
+          <article class="rcard swiper-slide">
+            <blockquote>Mr. Lokesh Murali is an inspiring design team lead whose creativity, strategic thinking, and leadership consistently drive innovation and excellence. His mentorship fosters collaboration and empowers the team to excel.</blockquote>
+            <div class="rcard__person">
+              <span class="rcard__mark" aria-hidden="true">JP</span>
+              <div><b>Jaswanth P</b><span>UI/UX Team Lead, Quartrdesign</span></div>
+            </div>
+          </article>
+          <article class="rcard swiper-slide">
+            <blockquote>I've watched him mentor and develop aspiring designers into professionals. His unique ability to keep our team organized and on schedule, and his constant communication, helped lift our spirits in challenging situations.</blockquote>
+            <div class="rcard__person">
+              <span class="rcard__mark" aria-hidden="true">PN</span>
+              <div><b>Pavithran N</b><span>Senior UI/UX Designer</span></div>
+            </div>
+          </article>
+          <article class="rcard swiper-slide">
+            <blockquote>Mr. Lokesh is an excellent creative team lead who leads by example. His ability to work through crises and find new ways to achieve targets is inspiring.</blockquote>
+            <div class="rcard__person">
+              <span class="rcard__mark" aria-hidden="true">VV</span>
+              <div><b>Vignesh Vicky</b><span>Product Designer, Zoho</span></div>
+            </div>
+          </article>
+          <article class="rcard swiper-slide">
+            <blockquote>Lokesh is an incredibly creative designer who always adds the extra detail that makes work stand out. He is also approachable and consistently helpful.</blockquote>
+            <div class="rcard__person">
+              <span class="rcard__mark" aria-hidden="true">KN</span>
+              <div><b>Karthikkumar N</b><span>Senior Software Engineer, Luxoft</span></div>
+            </div>
+          </article>
+          <article class="rcard swiper-slide">
+            <blockquote>As a design lead, I've seen him coach and nurture young designers into industry-grade professionals. His UI/UX skills are self-evident in the success our clients have had with their applications.</blockquote>
+            <div class="rcard__person">
+              <span class="rcard__mark" aria-hidden="true">VR</span>
+              <div><b>Vinayak Rajagopalan</b><span>CEO, Byte Aesthetics</span></div>
+            </div>
+          </article>
+          <article class="rcard swiper-slide">
+            <blockquote>His hands-on strategy to user interface, user experience and leadership gained him the respect of the team. Despite deadline pressure, he was always able to complete tasks with favorable results.</blockquote>
+            <div class="rcard__person">
+              <span class="rcard__mark" aria-hidden="true">GP</span>
+              <div><b>Gowtham Paramasivam</b><span>Lead Software Engineer</span></div>
+            </div>
+          </article>
+          <article class="rcard swiper-slide">
+            <blockquote>From helping us all feel valued and operating at our best, to making tough decisions and putting structure into our analysis, Lokesh made a strong contribution to both the team and our customers.</blockquote>
+            <div class="rcard__person">
+              <span class="rcard__mark" aria-hidden="true">GA</span>
+              <div><b>Gunaseelan Arunachalam</b><span>Web3 Growth Partner, BlockchainX</span></div>
+            </div>
+          </article>
+          <article class="rcard swiper-slide">
+            <blockquote>Lokesh combines creative strength with a clear understanding of client needs. He consistently delivers fresh, thoughtful design work with quality and timeliness.</blockquote>
+            <div class="rcard__person">
+              <span class="rcard__mark" aria-hidden="true">PK</span>
+              <div><b>Praveen Kumar</b><span>Software Architect &amp; Engineering Leader</span></div>
+            </div>
+          </article>
+          <article class="rcard swiper-slide">
+            <blockquote>Lokesh brings rare creative skill to mobile app design. He keeps learning, stays current, and consistently produces work that feels distinctive.</blockquote>
+            <div class="rcard__person">
+              <span class="rcard__mark" aria-hidden="true">YS</span>
+              <div><b>Yokesh Sankar</b><span>Digital Assets &amp; Blockchain Consultant</span></div>
+            </div>
+          </article>
+          <article class="rcard swiper-slide">
+            <blockquote>Lokesh is a talented creative designer and a thoughtful mentor. His design feedback, deep knowledge, and positive attitude made him invaluable to our team.</blockquote>
+            <div class="rcard__person">
+              <span class="rcard__mark" aria-hidden="true">RR</span>
+              <div><b>Rajasekar R</b><span>Digital Marketer &amp; Cloud/DevOps Engineer</span></div>
+            </div>
+          </article>
+          <article class="rcard swiper-slide">
+            <blockquote>Lokesh is a dedicated and enthusiastic designer with strong visual, UI and UX skills. His branding work and project designs consistently delighted our clients.</blockquote>
+            <div class="rcard__person">
+              <span class="rcard__mark" aria-hidden="true">RS</span>
+              <div><b>Ravishankar Shanmugam</b><span>Product Owner, Mynt &middot; VP Business</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="recommendations__controls" aria-label="Recommendation controls">
+        <button class="recommendations__arrow recommendations__arrow--prev" type="button" aria-label="Previous recommendation">&larr;</button>
+        <span class="recommendations__pagination" aria-live="polite"></span>
+        <button class="recommendations__arrow recommendations__arrow--next" type="button" aria-label="Next recommendation">&rarr;</button>
+      </div>
+    </section>
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <div class="footer__row">
+        <span>2026 Lokesh Murali - Coimbatore, India - Open to global remote</span>
+        <div class="footer__links">
+          <a href="https://www.linkedin.com/in/lokeshmurali/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.behance.net/sparkouttech" target="_blank" rel="noopener">Behance</a>
+          <a href="mailto:lokeshmurali44@gmail.com">Email</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <dialog class="booking" id="bookingDialog" aria-labelledby="bookingTitle">
+    <form class="booking__panel" id="bookingForm">
+      <button class="booking__close" type="button" aria-label="Close booking form" data-booking-close>&times;</button>
+      <p class="booking__eyebrow">Start a conversation</p>
+      <h2 id="bookingTitle">Book a focused<br>30-minute call.</h2>
+      <p class="booking__intro">Share the product, the challenge and a time that works for you. Your details stay in your email client until you send.</p>
+      <div class="booking__grid">
+        <label>Your name<input name="name" required autocomplete="name" placeholder="Your name"></label>
+        <label>Work email<input name="email" required type="email" autocomplete="email" placeholder="you@company.com"></label>
+        <label>Preferred date<input name="date" required type="date"></label>
+        <label>Preferred time<input name="time" required type="time"></label>
+      </div>
+      <label>What are you building?<textarea name="brief" required rows="4" placeholder="A short product and project summary"></textarea></label>
+      <button class="btn btn--yellow btn--big" type="submit">Prepare Call Request</button>
+      <p class="booking__note">This opens a pre-filled email to lokeshmurali44@gmail.com.</p>
+    </form>
+  </dialog>
+
+  <script src="js/vendor/lenis.min.js"></script>
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/vendor/MotionPathPlugin.min.js"></script>
+  <script src="js/vendor/DrawSVGPlugin.min.js"></script>
+  <script src="js/vendor/Flip.min.js"></script>
+  <script src="js/vendor/SplitText.min.js"></script>
+  <script src="js/vendor/ScrollToPlugin.min.js"></script>
+  <script src="js/vendor/swiper-bundle.min.js"></script>
+  <script src="js/main.js?v=20260729m"></script>
+</body>
+</html>
+
+
+
+
+
+
