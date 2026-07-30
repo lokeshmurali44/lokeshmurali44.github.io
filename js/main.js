@@ -316,7 +316,7 @@
     };
     const WHEEL_GESTURE_GAP = 120;
     const TRACKPAD_GESTURE_GAP = 220;
-    const WHEEL_TRIGGER_DISTANCE = 44;
+    const TRACKPAD_TRIGGER_DISTANCE = 24;
     const WHEEL_REVERSE_DISTANCE = 64;
     const WHEEL_DISCRETE_DELTA = 80;
     const WHEEL_DISCRETE_EVENT_GAP = 90;
@@ -643,7 +643,7 @@
       if (wheelGesture.consumed) return;
       wheelGesture.distance += Math.min(Math.abs(delta), WHEEL_DISCRETE_DELTA);
 
-      if (!isDiscreteWheel && wheelGesture.distance < WHEEL_TRIGGER_DISTANCE) return;
+      if (!isDiscreteWheel && wheelGesture.distance < TRACKPAD_TRIGGER_DISTANCE) return;
 
       wheelGesture.consumed = true;
       wheelGesture.distance = 0;
