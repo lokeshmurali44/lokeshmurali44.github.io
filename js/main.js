@@ -317,6 +317,7 @@
     const WHEEL_TRIGGER_DISTANCE = 44;
     const WHEEL_DISCRETE_DELTA = 64;
     const WHEEL_DISCRETE_EVENT_GAP = 90;
+    const PAGE_STEP_EPSILON = 20;
 
     const clearWheelGesture = () => {
       wheelGesture.direction = 0;
@@ -485,7 +486,12 @@
       const minimumStepDistance = Math.max(88, window.innerHeight * 0.12);
       cachedPageStops = stages.reduce((stops, stage) => {
         const previous = stops[stops.length - 1];
-        if (!previous || stage.top - previous.top >= minimumStepDistance) {
+        const preserveRecommendationsTop = stage.type === 'footer'
+          && previous?.section === 'recommendations'
+          && previous.type === 'section';
+        if (!previous
+          || stage.top - previous.top >= minimumStepDistance
+          || preserveRecommendationsTop) {
           stops.push(stage);
         } else {
           stops[stops.length - 1] = stage;
@@ -622,8 +628,8 @@
       if (!stages.length) return;
       const y = window.scrollY;
       const destination = direction > 0
-        ? stages.find((stage) => stage.top > y + 48)
-        : [...stages].reverse().find((stage) => stage.top < y - 48);
+        ? stages.find((stage) => stage.top > y + PAGE_STEP_EPSILON)
+        : [...stages].reverse().find((stage) => stage.top < y - PAGE_STEP_EPSILON);
       if (!destination) return;
 
       pageStepInputType = isDiscreteWheel ? 'wheel' : 'trackpad';
