@@ -606,7 +606,7 @@
 
       if (window.lenis) {
         window.lenis.scrollTo(destination.type === 'work' ? destination.top + 1 : destination.top, {
-          duration: 0.82,
+          duration: 1,
           lock: true,
           force: true,
           onComplete: finishStep,
