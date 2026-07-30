@@ -310,6 +310,7 @@
       consumed: false,
       packetCount: 0,
       lastEventAt: 0,
+      lastMagnitude: 0,
       inputType: null,
       reverseDistance: 0,
     };
@@ -320,6 +321,9 @@
     const WHEEL_DISCRETE_DELTA = 80;
     const WHEEL_DISCRETE_EVENT_GAP = 90;
     const POST_LANDING_TRACKPAD_GAP = 120;
+    const POST_LANDING_IMPULSE_RATIO = 1.6;
+    const POST_LANDING_MIN_IMPULSE = 6;
+    const POST_LANDING_REVERSE_IMPULSE = 8;
     const PAGE_STEP_EPSILON = 20;
 
     const isContinuousWheelGesture = () => wheelGesture.inputType === 'trackpad'
@@ -334,6 +338,7 @@
       wheelGesture.consumed = false;
       wheelGesture.packetCount = 0;
       wheelGesture.lastEventAt = 0;
+      wheelGesture.lastMagnitude = 0;
       wheelGesture.inputType = null;
       wheelGesture.reverseDistance = 0;
     };
@@ -606,12 +611,15 @@
 
       const now = Date.now();
       const direction = delta > 0 ? 1 : -1;
+      const magnitude = Math.abs(delta);
       const eventGap = wheelGesture.lastEventAt ? now - wheelGesture.lastEventAt : Number.POSITIVE_INFINITY;
+      const previousMagnitude = wheelGesture.lastMagnitude;
       const isDiscreteWheel = event.deltaMode !== WheelEvent.DOM_DELTA_PIXEL
         || Math.abs(delta) >= WHEEL_DISCRETE_DELTA;
 
       if (pageStepLocked) {
         wheelGesture.lastEventAt = now;
+        wheelGesture.lastMagnitude = magnitude;
         wheelGesture.inputType = isDiscreteWheel ? 'wheel' : 'trackpad';
         return;
       }
@@ -620,8 +628,17 @@
         const postLandingGap = isDiscreteWheel
           ? WHEEL_DISCRETE_EVENT_GAP
           : POST_LANDING_TRACKPAD_GAP;
-        if (eventGap < postLandingGap) {
+        const hasFreshImpulse = magnitude >= POST_LANDING_MIN_IMPULSE
+          && previousMagnitude > 0
+          && magnitude >= previousMagnitude * POST_LANDING_IMPULSE_RATIO;
+        const hasReverseImpulse = wheelGesture.direction
+          && wheelGesture.direction !== direction
+          && magnitude >= POST_LANDING_REVERSE_IMPULSE;
+        if (eventGap < postLandingGap
+          && !hasFreshImpulse
+          && !hasReverseImpulse) {
           wheelGesture.lastEventAt = now;
+          wheelGesture.lastMagnitude = magnitude;
           wheelGesture.inputType = isDiscreteWheel ? 'wheel' : 'trackpad';
           return;
         }
@@ -631,6 +648,7 @@
 
       wheelGesture.packetCount += 1;
       wheelGesture.lastEventAt = now;
+      wheelGesture.lastMagnitude = magnitude;
       wheelGesture.inputType = isDiscreteWheel ? 'wheel' : 'trackpad';
       scheduleWheelGestureReset();
 
