@@ -37,3 +37,347 @@
 
   .recommendations__controls { margin-top: 12px; }
 }
+
+/* Hero: deliberate tablet and mobile compositions. */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .hero,
+  .hero__pin {
+    height: 100svh !important;
+    min-height: 620px !important;
+  }
+
+  .hero__pin {
+    position: relative;
+    padding: 0 !important;
+  }
+
+  .hero__giant {
+    position: absolute;
+    top: 82px;
+    right: 34px;
+    left: 34px;
+    width: auto;
+    height: auto;
+    font-size: 160px;
+    line-height: 0.82;
+  }
+
+  .hero__stage {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+    margin: 0;
+    pointer-events: none;
+  }
+
+  .hero__headline,
+  .hero__chip {
+    position: absolute !important;
+  }
+
+  .hero__photo {
+    top: 82px !important;
+    bottom: 0 !important;
+    width: 500px !important;
+    height: auto !important;
+  }
+
+  .hero__photo img {
+    top: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .hero__headline {
+    top: 365px !important;
+    left: 50% !important;
+    width: 470px;
+    transform: translateX(-50%);
+  }
+
+  .hero__headline h2 {
+    font-size: 58px !important;
+    line-height: 0.96 !important;
+  }
+
+  .hero__chip--stats {
+    top: 315px !important;
+    left: 34px !important;
+    min-width: 190px;
+  }
+
+  .hero__chip--traits {
+    top: 290px !important;
+    right: 34px !important;
+    left: auto !important;
+  }
+
+  .hero__foot {
+    position: absolute !important;
+    right: 34px !important;
+    bottom: 22px !important;
+    left: 34px !important;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .hero__tag,
+  .hero__sub {
+    display: none !important;
+  }
+
+  .hero__actions {
+    position: static;
+    transform: none;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .hero,
+  .hero__pin {
+    height: 100svh !important;
+    min-height: 720px !important;
+  }
+
+  .hero__pin {
+    position: relative;
+    padding: 0 !important;
+  }
+
+  .hero__giant {
+    position: absolute;
+    top: 86px;
+    right: 24px;
+    left: 24px;
+    width: auto;
+    height: auto;
+    font-size: 120px;
+    line-height: 0.82;
+  }
+
+  .hero__stage {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+    margin: 0;
+    pointer-events: none;
+  }
+
+  .hero__headline,
+  .hero__chip {
+    position: absolute !important;
+  }
+
+  .hero__photo {
+    top: 112px !important;
+    bottom: 0 !important;
+    width: 560px !important;
+    height: auto !important;
+  }
+
+  .hero__photo img {
+    top: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .hero__headline {
+    top: 520px !important;
+    left: 48px !important;
+    width: 500px;
+  }
+
+  .hero__headline h2 {
+    font-size: 54px !important;
+    line-height: 0.96 !important;
+  }
+
+  .hero__chip--stats {
+    top: 382px !important;
+    left: 24px !important;
+    min-width: 166px;
+    padding: 14px !important;
+  }
+
+  .hero__chip--stats .hero__chip-stat b {
+    font-size: 24px !important;
+  }
+
+  .hero__chip--stats .hero__chip-stat span {
+    font-size: 11px !important;
+  }
+
+  .hero__chip--traits {
+    top: 342px !important;
+    right: 24px !important;
+    left: auto !important;
+    min-width: 158px;
+    padding: 14px !important;
+    gap: 8px !important;
+  }
+
+  .hero__chip--traits li {
+    font-size: 13px !important;
+  }
+
+  .hero__foot {
+    position: absolute !important;
+    right: 24px !important;
+    bottom: 22px !important;
+    left: 24px !important;
+    padding: 0;
+  }
+
+  .hero__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+  }
+
+  .hero__actions .btn {
+    min-height: 52px;
+  }
+}
+
+@media (max-width: 600px) {
+  .mobilebar {
+    padding: 12px 14px;
+    background: rgba(222, 218, 205, 0.92);
+  }
+
+  .mobilebar .side__logo {
+    min-height: 46px;
+    padding: 0 16px;
+    font-size: 18px;
+  }
+
+  .hero,
+  .hero__pin {
+    height: 100svh !important;
+    min-height: 680px !important;
+  }
+
+  .hero__pin {
+    position: relative;
+    padding: 0 !important;
+  }
+
+  .hero__giant {
+    position: absolute;
+    top: 82px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    height: auto;
+    font-size: 58px;
+    line-height: 0.84;
+  }
+
+  .hero__stage {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+    margin: 0;
+    pointer-events: none;
+  }
+
+  .hero__headline,
+  .hero__chip {
+    position: absolute !important;
+  }
+
+  .hero__photo {
+    top: 168px !important;
+    bottom: 0 !important;
+    width: 110% !important;
+    height: auto !important;
+  }
+
+  .hero__photo img {
+    top: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .hero__headline {
+    top: 530px !important;
+    right: 14px;
+    left: 24px !important;
+    width: auto;
+  }
+
+  .hero__headline h2 {
+    font-size: 42px !important;
+    line-height: 0.94 !important;
+  }
+
+  .hero__chip--stats {
+    top: 345px !important;
+    left: 12px !important;
+    min-width: 136px;
+    padding: 10px !important;
+    gap: 8px !important;
+  }
+
+  .hero__chip--stats .hero__chip-stat b {
+    font-size: 20px !important;
+  }
+
+  .hero__chip--stats .hero__chip-stat span {
+    font-size: 9px !important;
+  }
+
+  .hero__chip--traits {
+    display: none !important;
+  }
+
+  .hero__foot {
+    position: absolute !important;
+    right: 14px !important;
+    bottom: 14px !important;
+    left: 14px !important;
+    padding: 0;
+  }
+
+  .hero__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+  }
+
+  .hero__actions .btn {
+    min-width: 0;
+    min-height: 48px;
+    padding: 0 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 374px) {
+  .hero__giant {
+    right: 14px;
+    left: 14px;
+    font-size: 53px;
+  }
+
+  .hero__photo {
+    top: 158px !important;
+    width: 111% !important;
+  }
+
+  .hero__headline {
+    top: 505px !important;
+    left: 20px !important;
+  }
+
+  .hero__headline h2 {
+    font-size: 39px !important;
+  }
+
+  .hero__chip--stats {
+    top: 325px !important;
+  }
+}
