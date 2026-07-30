@@ -299,20 +299,11 @@
 
     // Convert the desktop page into one deliberate, reversible scroll sequence.
     let pageStepLocked = false;
+    let pageStepNeedsFreshGesture = false;
     let pageStepToken = 0;
     let pageStepUnlockTimer;
-    let pageStepInputType = null;
-    let pageStepStartedAt = 0;
-    let pageStepQueuedDirection = 0;
-    let pageStepQueuedInputType = null;
-    let wheelInputReadyAt = 0;
     let cachedPageStops = null;
     let wheelGestureResetTimer;
-    const queuedWheelGesture = {
-      active: false,
-      direction: 0,
-      distance: 0,
-    };
     const wheelGesture = {
       direction: 0,
       distance: 0,
@@ -328,8 +319,7 @@
     const WHEEL_REVERSE_DISTANCE = 64;
     const WHEEL_DISCRETE_DELTA = 80;
     const WHEEL_DISCRETE_EVENT_GAP = 90;
-    const TRACKPAD_QUEUE_GESTURE_GAP = 90;
-    const PAGE_STEP_QUEUE_DELAY = 180;
+    const POST_LANDING_TRACKPAD_GAP = 120;
     const PAGE_STEP_EPSILON = 20;
 
     const isContinuousWheelGesture = () => wheelGesture.inputType === 'trackpad'
@@ -346,12 +336,6 @@
       wheelGesture.lastEventAt = 0;
       wheelGesture.inputType = null;
       wheelGesture.reverseDistance = 0;
-    };
-
-    const clearQueuedWheelGesture = () => {
-      queuedWheelGesture.active = false;
-      queuedWheelGesture.direction = 0;
-      queuedWheelGesture.distance = 0;
     };
 
     const resetWheelGesture = () => {
@@ -538,10 +522,6 @@
 
     const runPageStep = (destination) => {
       pageStepLocked = true;
-      pageStepStartedAt = Date.now();
-      pageStepQueuedDirection = 0;
-      pageStepQueuedInputType = null;
-      clearQueuedWheelGesture();
       const token = ++pageStepToken;
       let stepFinished = false;
       const alignWorkToViewport = () => {
@@ -589,27 +569,11 @@
             window.requestAnimationFrame(() => window.requestAnimationFrame(alignCapabilityToProofLine));
           }
         }
-        const usedContinuousInput = pageStepInputType === 'trackpad'
-          || isContinuousWheelGesture();
-        const queuedDirection = pageStepQueuedDirection;
-        const queuedInputType = pageStepQueuedInputType;
-        pageStepQueuedDirection = 0;
-        pageStepQueuedInputType = null;
-        clearQueuedWheelGesture();
-        wheelInputReadyAt = Date.now() + (usedContinuousInput ? 110 : 70);
         pageStepLocked = false;
-        pageStepInputType = null;
+        pageStepNeedsFreshGesture = true;
         window.clearTimeout(wheelGestureResetTimer);
-        clearWheelGesture();
-
-        if (queuedDirection) {
-          const queuedDestination = getPageStepDestination(queuedDirection);
-          if (queuedDestination) {
-            wheelInputReadyAt = 0;
-            pageStepInputType = queuedInputType || 'trackpad';
-            runPageStep(queuedDestination);
-          }
-        }
+        wheelGesture.distance = 0;
+        wheelGesture.reverseDistance = 0;
       };
 
       // Lenis can occasionally lose its completion callback when ScrollTrigger
@@ -647,47 +611,22 @@
         || Math.abs(delta) >= WHEEL_DISCRETE_DELTA;
 
       if (pageStepLocked) {
-        const queueGestureGap = isDiscreteWheel
-          ? WHEEL_DISCRETE_EVENT_GAP
-          : TRACKPAD_QUEUE_GESTURE_GAP;
-        const canStartQueuedGesture = now - pageStepStartedAt >= PAGE_STEP_QUEUE_DELAY
-          && eventGap >= queueGestureGap;
-
-        if (!pageStepQueuedDirection) {
-          if (!queuedWheelGesture.active && canStartQueuedGesture) {
-            queuedWheelGesture.active = true;
-            queuedWheelGesture.direction = direction;
-            queuedWheelGesture.distance = 0;
-          } else if (queuedWheelGesture.active
-            && queuedWheelGesture.direction !== direction) {
-            if (canStartQueuedGesture) {
-              queuedWheelGesture.direction = direction;
-              queuedWheelGesture.distance = 0;
-            } else {
-              clearQueuedWheelGesture();
-            }
-          }
-
-          if (queuedWheelGesture.active
-            && queuedWheelGesture.direction === direction) {
-            queuedWheelGesture.distance += Math.min(Math.abs(delta), WHEEL_DISCRETE_DELTA);
-            if (isDiscreteWheel
-              || queuedWheelGesture.distance >= TRACKPAD_TRIGGER_DISTANCE) {
-              pageStepQueuedDirection = direction;
-              pageStepQueuedInputType = isDiscreteWheel ? 'wheel' : 'trackpad';
-              clearQueuedWheelGesture();
-            }
-          }
-        }
-
-        wheelGesture.packetCount += 1;
         wheelGesture.lastEventAt = now;
         wheelGesture.inputType = isDiscreteWheel ? 'wheel' : 'trackpad';
         return;
       }
 
-      if (now < wheelInputReadyAt) {
-        return;
+      if (pageStepNeedsFreshGesture) {
+        const postLandingGap = isDiscreteWheel
+          ? WHEEL_DISCRETE_EVENT_GAP
+          : POST_LANDING_TRACKPAD_GAP;
+        if (eventGap < postLandingGap) {
+          wheelGesture.lastEventAt = now;
+          wheelGesture.inputType = isDiscreteWheel ? 'wheel' : 'trackpad';
+          return;
+        }
+        pageStepNeedsFreshGesture = false;
+        clearWheelGesture();
       }
 
       wheelGesture.packetCount += 1;
@@ -727,7 +666,6 @@
       const destination = getPageStepDestination(direction);
       if (!destination) return;
 
-      pageStepInputType = isDiscreteWheel ? 'wheel' : 'trackpad';
       runPageStep(destination);
     };
     window.addEventListener('wheel', stepThroughPage, { passive: false, capture: true });
