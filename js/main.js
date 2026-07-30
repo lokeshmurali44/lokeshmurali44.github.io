@@ -312,12 +312,21 @@
       packetCount: 0,
       lastEventAt: 0,
       inputType: null,
+      reverseDistance: 0,
     };
-    const WHEEL_GESTURE_GAP = 150;
+    const WHEEL_GESTURE_GAP = 120;
+    const TRACKPAD_GESTURE_GAP = 220;
     const WHEEL_TRIGGER_DISTANCE = 44;
-    const WHEEL_DISCRETE_DELTA = 64;
+    const WHEEL_REVERSE_DISTANCE = 64;
+    const WHEEL_DISCRETE_DELTA = 80;
     const WHEEL_DISCRETE_EVENT_GAP = 90;
     const PAGE_STEP_EPSILON = 20;
+
+    const isContinuousWheelGesture = () => wheelGesture.inputType === 'trackpad'
+      || wheelGesture.packetCount > 1;
+    const getWheelGestureGap = () => isContinuousWheelGesture()
+      ? TRACKPAD_GESTURE_GAP
+      : WHEEL_GESTURE_GAP;
 
     const clearWheelGesture = () => {
       wheelGesture.direction = 0;
@@ -326,6 +335,7 @@
       wheelGesture.packetCount = 0;
       wheelGesture.lastEventAt = 0;
       wheelGesture.inputType = null;
+      wheelGesture.reverseDistance = 0;
     };
 
     const resetWheelGesture = () => {
@@ -333,7 +343,7 @@
       const now = Date.now();
       const quietRemaining = Math.max(
         0,
-        WHEEL_GESTURE_GAP - (now - wheelGesture.lastEventAt)
+        getWheelGestureGap() - (now - wheelGesture.lastEventAt)
       );
       if (pageStepLocked || quietRemaining > 0) {
         wheelGestureResetTimer = window.setTimeout(
@@ -347,7 +357,7 @@
 
     const scheduleWheelGestureReset = () => {
       window.clearTimeout(wheelGestureResetTimer);
-      wheelGestureResetTimer = window.setTimeout(resetWheelGesture, WHEEL_GESTURE_GAP);
+      wheelGestureResetTimer = window.setTimeout(resetWheelGesture, getWheelGestureGap());
     };
 
     const normalizeWheelDelta = (event) => {
@@ -550,12 +560,13 @@
             window.requestAnimationFrame(() => window.requestAnimationFrame(alignCapabilityToProofLine));
           }
         }
-        const usedTrackpad = pageStepInputType === 'trackpad';
-        wheelInputReadyAt = Date.now() + (usedTrackpad ? 140 : 70);
+        const usedContinuousInput = pageStepInputType === 'trackpad'
+          || isContinuousWheelGesture();
+        wheelInputReadyAt = Date.now() + (usedContinuousInput ? 110 : 70);
         pageStepLocked = false;
         pageStepInputType = null;
-        if (usedTrackpad) {
-          scheduleWheelGestureReset();
+        if (usedContinuousInput) {
+          resetWheelGesture();
         } else {
           clearWheelGesture();
         }
@@ -608,13 +619,25 @@
       }
 
       if (wheelGesture.direction && wheelGesture.direction !== direction) {
+        const immediateWheelReverse = isDiscreteWheel
+          && eventGap >= WHEEL_DISCRETE_EVENT_GAP;
+        if (wheelGesture.consumed
+          && !immediateWheelReverse
+          && eventGap < getWheelGestureGap()) {
+          wheelGesture.reverseDistance += Math.min(Math.abs(delta), WHEEL_DISCRETE_DELTA);
+          if (wheelGesture.reverseDistance < WHEEL_REVERSE_DISTANCE) return;
+        }
         wheelGesture.distance = 0;
         wheelGesture.consumed = false;
         wheelGesture.packetCount = 1;
+        wheelGesture.reverseDistance = 0;
       } else if (isDiscreteWheel && eventGap >= WHEEL_DISCRETE_EVENT_GAP) {
         wheelGesture.consumed = false;
         wheelGesture.distance = 0;
         wheelGesture.packetCount = 1;
+        wheelGesture.reverseDistance = 0;
+      } else {
+        wheelGesture.reverseDistance = 0;
       }
       wheelGesture.direction = direction;
       if (wheelGesture.consumed) return;
