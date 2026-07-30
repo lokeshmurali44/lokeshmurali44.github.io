@@ -300,10 +300,17 @@
     // Convert the desktop page into one deliberate, reversible scroll sequence.
     let pageStepLocked = false;
     let pageStepNeedsFreshGesture = false;
+    let pageStepLandedAt = 0;
+    let pageStepGestureReleaseAt = 0;
     let pageStepToken = 0;
     let pageStepUnlockTimer;
     let cachedPageStops = null;
     let wheelGestureResetTimer;
+    const postLandingGesture = {
+      direction: 0,
+      distance: 0,
+      risingPackets: 0,
+    };
     const wheelGesture = {
       direction: 0,
       distance: 0,
@@ -320,10 +327,13 @@
     const WHEEL_REVERSE_DISTANCE = 64;
     const WHEEL_DISCRETE_DELTA = 80;
     const WHEEL_DISCRETE_EVENT_GAP = 90;
-    const POST_LANDING_TRACKPAD_GAP = 120;
-    const POST_LANDING_IMPULSE_RATIO = 1.6;
-    const POST_LANDING_MIN_IMPULSE = 6;
-    const POST_LANDING_REVERSE_IMPULSE = 8;
+    const POST_LANDING_STRONG_GAP = 180;
+    const POST_LANDING_REARM_DELAY = 80;
+    const POST_LANDING_RISE_RATIO = 1.25;
+    const POST_LANDING_MIN_RISE = 2;
+    const POST_LANDING_RISE_PACKETS = 2;
+    const POST_LANDING_TRIGGER_DISTANCE = 24;
+    const PAGE_STEP_GESTURE_WINDOW = 1100;
     const PAGE_STEP_EPSILON = 20;
 
     const isContinuousWheelGesture = () => wheelGesture.inputType === 'trackpad'
@@ -341,6 +351,12 @@
       wheelGesture.lastMagnitude = 0;
       wheelGesture.inputType = null;
       wheelGesture.reverseDistance = 0;
+    };
+
+    const clearPostLandingGesture = () => {
+      postLandingGesture.direction = 0;
+      postLandingGesture.distance = 0;
+      postLandingGesture.risingPackets = 0;
     };
 
     const resetWheelGesture = () => {
@@ -527,6 +543,7 @@
 
     const runPageStep = (destination) => {
       pageStepLocked = true;
+      pageStepGestureReleaseAt = Date.now() + PAGE_STEP_GESTURE_WINDOW;
       const token = ++pageStepToken;
       let stepFinished = false;
       const alignWorkToViewport = () => {
@@ -576,6 +593,8 @@
         }
         pageStepLocked = false;
         pageStepNeedsFreshGesture = true;
+        pageStepLandedAt = Date.now();
+        clearPostLandingGesture();
         window.clearTimeout(wheelGestureResetTimer);
         wheelGesture.distance = 0;
         wheelGesture.reverseDistance = 0;
@@ -625,24 +644,51 @@
       }
 
       if (pageStepNeedsFreshGesture) {
-        const postLandingGap = isDiscreteWheel
-          ? WHEEL_DISCRETE_EVENT_GAP
-          : POST_LANDING_TRACKPAD_GAP;
-        const hasFreshImpulse = magnitude >= POST_LANDING_MIN_IMPULSE
-          && previousMagnitude > 0
-          && magnitude >= previousMagnitude * POST_LANDING_IMPULSE_RATIO;
-        const hasReverseImpulse = wheelGesture.direction
-          && wheelGesture.direction !== direction
-          && magnitude >= POST_LANDING_REVERSE_IMPULSE;
-        if (eventGap < postLandingGap
-          && !hasFreshImpulse
-          && !hasReverseImpulse) {
+        if (now < pageStepGestureReleaseAt) {
+          clearPostLandingGesture();
+          wheelGesture.lastEventAt = now;
+          wheelGesture.lastMagnitude = magnitude;
+          wheelGesture.inputType = isDiscreteWheel ? 'wheel' : 'trackpad';
+          return;
+        }
+
+        const isPixelInput = event.deltaMode === WheelEvent.DOM_DELTA_PIXEL;
+        const isRisingPacket = previousMagnitude > 0
+          && magnitude - previousMagnitude >= POST_LANDING_MIN_RISE
+          && magnitude >= previousMagnitude * POST_LANDING_RISE_RATIO;
+
+        if (postLandingGesture.direction !== direction) {
+          postLandingGesture.direction = direction;
+          postLandingGesture.distance = magnitude;
+          postLandingGesture.risingPackets = 0;
+        } else if (isRisingPacket) {
+          postLandingGesture.distance += magnitude;
+          postLandingGesture.risingPackets += 1;
+        } else if (magnitude <= previousMagnitude) {
+          postLandingGesture.distance = magnitude;
+          postLandingGesture.risingPackets = 0;
+        } else {
+          postLandingGesture.distance += magnitude;
+        }
+
+        const hasFreshImpulse = postLandingGesture.risingPackets >= POST_LANDING_RISE_PACKETS
+          && postLandingGesture.distance >= POST_LANDING_TRIGGER_DISTANCE;
+        const hasSeparatedTouchpadGesture = isPixelInput
+          && eventGap >= POST_LANDING_STRONG_GAP;
+        const hasSeparatedWheelNotch = !isPixelInput
+          && eventGap >= WHEEL_DISCRETE_EVENT_GAP;
+        const canRearm = now - pageStepLandedAt >= POST_LANDING_REARM_DELAY;
+        if (!canRearm
+          || (!hasFreshImpulse
+            && !hasSeparatedTouchpadGesture
+            && !hasSeparatedWheelNotch)) {
           wheelGesture.lastEventAt = now;
           wheelGesture.lastMagnitude = magnitude;
           wheelGesture.inputType = isDiscreteWheel ? 'wheel' : 'trackpad';
           return;
         }
         pageStepNeedsFreshGesture = false;
+        clearPostLandingGesture();
         clearWheelGesture();
       }
 
