@@ -601,6 +601,10 @@
       event.stopImmediatePropagation();
 
       const now = Date.now();
+      if (pageStepLocked || now < wheelInputReadyAt) {
+        return;
+      }
+
       const direction = delta > 0 ? 1 : -1;
       const eventGap = wheelGesture.lastEventAt ? now - wheelGesture.lastEventAt : Number.POSITIVE_INFINITY;
       const isDiscreteWheel = event.deltaMode !== WheelEvent.DOM_DELTA_PIXEL
@@ -609,14 +613,6 @@
       wheelGesture.lastEventAt = now;
       wheelGesture.inputType = isDiscreteWheel ? 'wheel' : 'trackpad';
       scheduleWheelGestureReset();
-
-      if (pageStepLocked) {
-        return;
-      }
-
-      if (now < wheelInputReadyAt) {
-        return;
-      }
 
       if (wheelGesture.direction && wheelGesture.direction !== direction) {
         const immediateWheelReverse = isDiscreteWheel
