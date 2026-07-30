@@ -6,7 +6,7 @@
   const qsa = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
   const snapMode = new URLSearchParams(location.search).has('snap');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches || snapMode;
-  const desktop = window.matchMedia('(min-width: 761px)');
+  const desktop = window.matchMedia('(min-width: 901px)');
 
   if (snapMode) document.documentElement.classList.add('is-snapshot');
 
@@ -748,7 +748,7 @@
       gsap.from('.hero__nav-link', { y: 18, opacity: 0, duration: 0.55, stagger: 0.045, delay: 0.72, ease: 'power3.out' });
       gsap.from(['.hero__photo', '.hero__headline', '.hero__chip', '.hero__foot'], { y: 34, opacity: 0, duration: 0.82, stagger: 0.08, delay: 0.92, ease: 'power3.out' });
 
-      if (window.innerWidth > 760) {
+      if (window.innerWidth > 900) {
         gsap.timeline({
           defaults: { ease: 'none' },
           scrollTrigger: {
@@ -808,7 +808,7 @@
       rebuildJourneyMotion();
 
       ScrollTrigger.matchMedia({
-        '(min-width: 761px)': function () {
+        '(min-width: 901px)': function () {
           const work = qs('.work');
           const rail = qs('.work__rail');
           if (!work || !rail) return;
