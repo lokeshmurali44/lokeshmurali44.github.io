@@ -287,10 +287,10 @@ html {
   }
 
   .hero__photo {
-    top: 133px !important;
-    bottom: auto !important;
+    top: auto !important;
+    bottom: 0 !important;
     width: 592px !important;
-    height: 954px !important;
+    height: 823px !important;
   }
 
   .hero__photo img {
@@ -337,7 +337,7 @@ html {
   }
 
   .hero__headline {
-    top: 562px !important;
+    top: 603px !important;
     right: auto;
     left: calc(50% - 245px) !important;
     width: auto;
@@ -349,7 +349,7 @@ html {
   }
 
   .hero__foot {
-    top: 881px !important;
+    top: 930px !important;
     right: 24px !important;
     bottom: auto !important;
     left: 24px !important;
