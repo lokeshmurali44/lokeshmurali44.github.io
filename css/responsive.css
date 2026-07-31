@@ -4,6 +4,10 @@ html {
   text-size-adjust: 100%;
 }
 
+.hero__resume {
+  display: none;
+}
+
 @media (min-width: 901px) and (max-width: 1100px) and (max-height: 820px) {
   .recommendations {
     min-height: 100svh;
@@ -243,6 +247,133 @@ html {
 
   .hero__actions .btn {
     min-height: 52px;
+  }
+}
+
+/* Figma tablet portrait frame: node 64:3247, authored at 768 x 1024. */
+@media (min-width: 700px) and (max-width: 900px) and (orientation: portrait) {
+  .mobilebar {
+    height: 72px;
+    padding: 14px 18px 15px;
+    background: #DEDACD;
+  }
+
+  .mobilebar .side__logo {
+    display: flex;
+    width: 107px;
+    height: 43px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 8px;
+    font-size: 17px;
+    line-height: 26px;
+  }
+
+  .hero,
+  .hero__pin {
+    height: 1024px !important;
+    min-height: 720px !important;
+    max-height: 1024px;
+  }
+
+  .hero__giant {
+    top: 101px;
+    right: 24px;
+    left: 24px;
+    height: 123px;
+    font-size: 140px;
+    line-height: 98.4px;
+  }
+
+  .hero__photo {
+    top: 133px !important;
+    bottom: auto !important;
+    width: 592px !important;
+    height: 954px !important;
+  }
+
+  .hero__photo img {
+    top: -83.5px !important;
+    left: -68.7px !important;
+    width: 716.7px !important;
+    height: 1076.2px !important;
+    max-width: none;
+    object-fit: contain;
+  }
+
+  .hero__chip--stats {
+    top: 374px !important;
+    left: 44px !important;
+    min-width: 190px;
+    flex-direction: row;
+    gap: 20px !important;
+    padding: 16px !important;
+  }
+
+  .hero__chip--stats .hero__chip-stat b {
+    font-size: 28px !important;
+    line-height: 24px;
+  }
+
+  .hero__chip--stats .hero__chip-stat span {
+    margin-top: 7px;
+    font-size: 12px !important;
+    line-height: 16px;
+  }
+
+  .hero__chip--traits {
+    top: 363px !important;
+    right: 52px !important;
+    min-width: 157px;
+    padding: 15px !important;
+    gap: 10px !important;
+  }
+
+  .hero__chip--traits li {
+    gap: 10px;
+    font-size: 14px !important;
+    line-height: 20px;
+  }
+
+  .hero__headline {
+    top: 562px !important;
+    right: auto;
+    left: calc(50% - 245px) !important;
+    width: auto;
+  }
+
+  .hero__headline h2 {
+    font-size: 90px !important;
+    line-height: 100px !important;
+  }
+
+  .hero__foot {
+    top: 881px !important;
+    right: 24px !important;
+    bottom: auto !important;
+    left: 24px !important;
+    margin: 0;
+  }
+
+  .hero__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .hero__actions .btn {
+    height: 52px;
+    min-height: 52px;
+    padding: 0 12px;
+    font-size: 15px;
+  }
+
+  .hero__resume {
+    display: inline-flex;
+  }
+
+  .hero__booking {
+    display: none;
   }
 }
 
