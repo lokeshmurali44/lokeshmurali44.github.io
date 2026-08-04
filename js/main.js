@@ -7,6 +7,7 @@
   const snapMode = new URLSearchParams(location.search).has('snap');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches || snapMode;
   const desktop = window.matchMedia('(min-width: 901px)');
+  const mobile = window.matchMedia('(max-width: 600px)');
 
   if (snapMode) document.documentElement.classList.add('is-snapshot');
 
@@ -238,7 +239,7 @@
     };
     syncCapabilitiesGeometry();
 
-    if (!reduceMotion && typeof window.Lenis === 'function') {
+    if (!mobile.matches && !reduceMotion && typeof window.Lenis === 'function') {
       window.lenis = new window.Lenis({ smoothWheel: true, syncTouch: true, duration: 1.08, autoRaf: false });
       window.lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add((time) => window.lenis.raf(time * 1000));
@@ -292,8 +293,8 @@
         });
         targetFinishTimer = window.setTimeout(finishTarget, 1450);
       } else {
-        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
-        targetFinishTimer = window.setTimeout(finishTarget, reduceMotion ? 0 : 1150);
+        target.scrollIntoView({ behavior: mobile.matches || reduceMotion ? 'auto' : 'smooth' });
+        targetFinishTimer = window.setTimeout(finishTarget, mobile.matches || reduceMotion ? 0 : 1150);
       }
     };
 
@@ -732,7 +733,9 @@
 
       runPageStep(destination);
     };
-    window.addEventListener('wheel', stepThroughPage, { passive: false, capture: true });
+    if (!mobile.matches) {
+      window.addEventListener('wheel', stepThroughPage, { passive: false, capture: true });
+    }
 
     qsa('a[href^="#"]:not([data-booking])').forEach((link) => {
       link.addEventListener('click', (event) => {
@@ -771,7 +774,7 @@
           .to('.hero__foot', { yPercent: 90, opacity: 0 }, 0.1);
       }
 
-      gsap.from('.journey .sec-head > *', {
+      if (!mobile.matches) gsap.from('.journey .sec-head > *', {
         y: 48,
         opacity: 0,
         stagger: 0.12,
@@ -843,7 +846,7 @@
         },
       });
 
-      gsap.from('.caps__heading > *, .caps__intro > *', {
+      if (!mobile.matches) gsap.from('.caps__heading > *, .caps__intro > *', {
         y: 46,
         opacity: 0,
         stagger: 0.1,
@@ -851,7 +854,7 @@
         ease: 'power3.out',
         scrollTrigger: { trigger: '.caps__layout', start: 'top 72%' },
       });
-      qsa('.caps__proofs .cap').forEach((capability) => {
+      if (!mobile.matches) qsa('.caps__proofs .cap').forEach((capability) => {
         gsap.from(capability, {
           opacity: 0,
           duration: 0.72,
@@ -859,7 +862,7 @@
           scrollTrigger: { trigger: capability, start: 'top 86%' },
         });
       });
-      gsap.from('.bigcta__title > span', { yPercent: 80, opacity: 0, stagger: 0.08, duration: 0.9, ease: 'power4.out', scrollTrigger: { trigger: '.bigcta', start: 'top 65%' } });
+      if (!mobile.matches) gsap.from('.bigcta__title > span', { yPercent: 80, opacity: 0, stagger: 0.08, duration: 0.9, ease: 'power4.out', scrollTrigger: { trigger: '.bigcta', start: 'top 65%' } });
     }
 
     const spyLinks = qsa('[data-spy]');
