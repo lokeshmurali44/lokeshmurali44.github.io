@@ -504,7 +504,7 @@ html {
     padding: 10.77px !important;
     gap: 13.64px !important;
     border-radius: 4.77px;
-    animation: none !important;
+    animation: heroCardFloatMobileStats 5.6s ease-in-out infinite !important;
     transform: none !important;
   }
 
@@ -531,7 +531,8 @@ html {
     padding: 12.33px 6.5px !important;
     gap: 8.33px !important;
     border-radius: 5.83px;
-    animation: none !important;
+    animation: heroCardFloatMobileTraits 6.2s ease-in-out -2.6s infinite !important;
+    transform: none !important;
   }
 
   .hero__chip--traits li {
@@ -577,6 +578,16 @@ html {
   .hero__booking {
     display: none;
   }
+}
+
+@keyframes heroCardFloatMobileStats {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 5px -11px; }
+}
+
+@keyframes heroCardFloatMobileTraits {
+  0%, 100% { translate: 0 0; }
+  50% { translate: -5px -12px; }
 }
 
 @media (max-width: 374px) {
