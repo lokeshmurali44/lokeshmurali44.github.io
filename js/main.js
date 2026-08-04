@@ -1,4 +1,4 @@
-/* Lokesh Murali portfolio: responsive navigation, booking and scroll choreography. */
+/* Lokesh Murali portfolio: responsive navigation and scroll choreography. */
 (function () {
   'use strict';
 
@@ -40,43 +40,6 @@
         location.href = 'mailto:lokeshmurali44@gmail.com';
       }
       window.setTimeout(() => { label.textContent = 'lokeshmurali44@gmail.com'; }, 1600);
-    });
-  }
-
-  function initBooking() {
-    const dialog = qs('#bookingDialog');
-    const form = qs('#bookingForm');
-    if (!dialog || !form) return;
-    const date = qs('input[type="date"]', form);
-    if (date) date.min = new Date().toISOString().split('T')[0];
-
-    qsa('[data-booking]').forEach((trigger) => {
-      trigger.addEventListener('click', (event) => {
-        event.preventDefault();
-        dialog.showModal();
-        document.body.classList.add('dialog-open');
-      });
-    });
-    qs('[data-booking-close]', dialog)?.addEventListener('click', () => dialog.close());
-    dialog.addEventListener('click', (event) => {
-      if (event.target === dialog) dialog.close();
-    });
-    dialog.addEventListener('close', () => document.body.classList.remove('dialog-open'));
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const data = new FormData(form);
-      const subject = `Portfolio call request from ${data.get('name')}`;
-      const body = [
-        `Name: ${data.get('name')}`,
-        `Email: ${data.get('email')}`,
-        `Preferred date: ${data.get('date')}`,
-        `Preferred time: ${data.get('time')}`,
-        '',
-        'Project summary:',
-        data.get('brief'),
-      ].join('\n');
-      location.href = `mailto:lokeshmurali44@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      dialog.close();
     });
   }
 
@@ -762,7 +725,7 @@
       window.addEventListener('wheel', stepThroughPage, { passive: false, capture: true });
     }
 
-    qsa('a[href^="#"]:not([data-booking])').forEach((link) => {
+    qsa('a[href^="#"]').forEach((link) => {
       link.addEventListener('click', (event) => {
         const hash = link.getAttribute('href');
         if (!hash || hash === '#') return;
@@ -1033,7 +996,6 @@
 
   initMenu();
   initEmailCopy();
-  initBooking();
   initJourneyExpanders();
   initTestimonials();
   initFallbackReveals();
