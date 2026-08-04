@@ -226,6 +226,31 @@
     });
   }
 
+  function initWorkRailControls() {
+    const rail = qs('#workRail');
+    const previous = qs('[data-work-prev]');
+    const next = qs('[data-work-next]');
+    if (!rail || !previous || !next) return;
+
+    const updateControls = () => {
+      const maxScroll = Math.max(0, rail.scrollWidth - rail.clientWidth);
+      previous.disabled = rail.scrollLeft <= 2;
+      next.disabled = rail.scrollLeft >= maxScroll - 2;
+    };
+    const move = (direction) => {
+      const card = qs('.wcard', rail);
+      if (!card) return;
+      const gap = Number.parseFloat(getComputedStyle(rail).columnGap) || 0;
+      rail.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap), behavior: 'smooth' });
+    };
+
+    previous.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    rail.addEventListener('scroll', updateControls, { passive: true });
+    window.addEventListener('resize', updateControls);
+    updateControls();
+  }
+
   function initMotion() {
     if (!window.gsap || !window.ScrollTrigger) return;
     const plugins = [window.ScrollTrigger, window.MotionPathPlugin, window.DrawSVGPlugin, window.SplitText, window.ScrollToPlugin].filter(Boolean);
@@ -1013,5 +1038,6 @@
   initTestimonials();
   initFallbackReveals();
   initDragCursor();
+  initWorkRailControls();
   initMotion();
 }());

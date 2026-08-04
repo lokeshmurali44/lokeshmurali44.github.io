@@ -8,6 +8,11 @@ html {
   display: none;
 }
 
+.work__title-mobile,
+.work__mobile-controls {
+  display: none;
+}
+
 @media (min-width: 901px) and (max-width: 1100px) and (max-height: 820px) {
   .recommendations {
     min-height: 100svh;
@@ -378,6 +383,290 @@ html {
 }
 
 @media (max-width: 600px) {
+  .journey {
+    min-height: 0;
+    padding-bottom: 50px;
+    background: #D5CFBE;
+  }
+
+  .journey .sec-head {
+    width: 100%;
+    max-width: 760px;
+    padding: 50px 20px 20px;
+  }
+
+  .journey .pill {
+    height: 34px;
+    margin-bottom: 22px;
+    padding: 6px 14px;
+    border-width: 1.2px;
+    font-size: 12.5px;
+    line-height: 19.38px;
+  }
+
+  .journey .sec-title {
+    width: 100%;
+    max-width: 336px;
+    font-size: 52px;
+    line-height: 46.8px;
+    letter-spacing: -0.78px;
+    white-space: nowrap;
+  }
+
+  .journey .sec-sub {
+    width: 100%;
+    max-width: 336px;
+    margin-top: 24px;
+    font-size: 16px;
+    line-height: 24.8px;
+  }
+
+  .journey__grid {
+    align-items: flex-end;
+    width: calc(100% - 40px);
+    max-width: 335.2px;
+    margin: 16px auto 0;
+    padding: 16px 0 60px !important;
+    gap: 54px !important;
+  }
+
+  .journey__grid > .jcard,
+  .journey__grid > .jcard:nth-of-type(n) {
+    width: 335px !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    padding: 30.8px !important;
+    border: 0.8px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px !important;
+    background: rgba(224, 220, 207, 0.78);
+    box-shadow: none;
+  }
+
+  .journey__grid > .jcard:nth-of-type(odd) {
+    align-self: flex-end !important;
+    transform: rotate(1.2deg);
+  }
+
+  .journey__grid > .jcard:nth-of-type(even) {
+    align-self: flex-start !important;
+    transform: rotate(-1.2deg);
+  }
+
+  .journey__grid > .jcard:nth-of-type(1),
+  .journey__grid > .jcard:nth-of-type(5),
+  .journey__grid > .jcard:nth-of-type(6) {
+    height: 351px;
+  }
+
+  .journey__grid > .jcard:nth-of-type(2),
+  .journey__grid > .jcard:nth-of-type(3),
+  .journey__grid > .jcard:nth-of-type(4),
+  .journey__grid > .jcard:nth-of-type(7) {
+    height: 314px;
+  }
+
+  .journey__grid > .jcard.expanded {
+    height: auto;
+  }
+
+  .journey__grid > .jcard:hover {
+    box-shadow: none;
+  }
+
+  .jcard__year {
+    margin-bottom: 14px;
+    font-size: 64px !important;
+    line-height: 64px;
+    text-shadow: none;
+  }
+
+  .jcard h3 {
+    margin-bottom: 8px;
+    font-size: 28px;
+    line-height: 36.4px;
+  }
+
+  .jcard > p {
+    font-size: 14.5px;
+    line-height: 22.48px;
+  }
+
+  .jcard__foot {
+    min-height: 45.9px;
+    align-items: center;
+    margin-top: 18px;
+  }
+
+  .jcard__handle i {
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+  }
+
+  .jcard__handle b {
+    font-size: 13px;
+    line-height: 20.15px;
+  }
+
+  .jcard__handle span {
+    font-size: 11.5px;
+    line-height: 17.83px;
+  }
+
+  .jcard__more {
+    min-height: 34px;
+    padding: 8px 16px;
+    border-width: 0.8px;
+    font-size: 13px;
+  }
+
+  .work {
+    position: relative;
+    display: block;
+    height: 680px;
+    min-height: 680px;
+    padding: 0;
+    background: #111;
+    overflow: hidden;
+  }
+
+  .work .sec-head {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 50px 20px 0;
+  }
+
+  .work .pill {
+    height: 33.8px;
+    margin-bottom: 22px;
+    padding: 6px 14px;
+    border-width: 1.2px;
+    font-size: 12.5px;
+    line-height: 19.38px;
+  }
+
+  .work .sec-title {
+    width: 336px;
+    max-width: 100%;
+    font-size: 44px;
+    line-height: 42px;
+    letter-spacing: -0.69px;
+  }
+
+  .work__title-desktop {
+    display: none;
+  }
+
+  .work__title-mobile {
+    display: block;
+  }
+
+  .work__rail {
+    position: absolute;
+    top: 272px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 252px;
+    min-height: 252px;
+    padding: 0 20px !important;
+    gap: 24px;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding-inline: 20px;
+    transform: none !important;
+    scrollbar-width: none;
+  }
+
+  .work__rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wcard,
+  .wcard:nth-child(n) {
+    flex: 0 0 323px !important;
+    width: 323px;
+    max-width: 323px;
+    height: 252px !important;
+    min-height: 252px !important;
+    aspect-ratio: auto;
+    scroll-snap-align: start;
+  }
+
+  .wcard__go {
+    padding: 0 0 20px 20px;
+  }
+
+  .wcard__go svg {
+    width: 54px;
+    height: 54px;
+  }
+
+  .wcard--all {
+    flex-basis: 323px !important;
+    width: 323px;
+    height: 252px !important;
+    aspect-ratio: auto;
+  }
+
+  .wcard__allinner {
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .wcard__allinner h3 {
+    font-size: 28px;
+    line-height: 26.32px;
+  }
+
+  .wcard__allinner p {
+    font-size: 12px;
+    line-height: 16.2px;
+  }
+
+  .work__hint {
+    display: none;
+  }
+
+  .work__mobile-controls {
+    position: absolute;
+    top: 553px;
+    left: 20px;
+    display: grid;
+    grid-template-columns: 38.3px minmax(0, 1fr) 38.3px;
+    align-items: center;
+    gap: 12px;
+    width: calc(100% - 40px);
+    height: 42px;
+  }
+
+  .work__mobile-controls button {
+    width: 38.3px;
+    height: 42px;
+    border: 0.8px solid #807F7A;
+    color: #F7F5EC;
+    font-size: 22px;
+    line-height: 22px;
+  }
+
+  .work__mobile-controls button:disabled {
+    color: #807F7A;
+  }
+
+  .work__mobile-controls a {
+    color: #807F7A;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18.6px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
   html,
   body {
     scroll-behavior: auto !important;
@@ -392,6 +681,7 @@ html {
 
   .mobilebar {
     display: flex !important;
+    position: absolute;
     height: 65.6px;
     padding: 12px 14px 12.8px;
     background: rgba(222, 218, 205, 0.92);
@@ -591,6 +881,12 @@ html {
 }
 
 @media (max-width: 374px) {
+  .journey .sec-title {
+    font-size: 47px;
+    line-height: 0.92;
+    letter-spacing: -0.7px;
+  }
+
   .hero__giant {
     font-size: 15.2vw;
   }

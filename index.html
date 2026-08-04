@@ -37,7 +37,7 @@
   <link rel="stylesheet" href="css/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/style.css?v=20260722an">
   <link rel="stylesheet" href="css/rebuild.css?v=20260730aa">
-  <link rel="stylesheet" href="css/responsive.css?v=20260804c">
+  <link rel="stylesheet" href="css/responsive.css?v=20260804d">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23EFFF00'/><text x='50' y='70' font-size='50' font-family='Arial Black' font-weight='900' text-anchor='middle' fill='%23111111'>L</text></svg>">
   <script type="application/ld+json">
     {
@@ -315,7 +315,10 @@
       <div class="sec-head sec-head--row">
         <div>
           <span class="pill pill--ondark">Selected Work</span>
-          <h2 class="sec-title sec-title--ondark">Built for Web3,<br>Made to Perform</h2>
+          <h2 class="sec-title sec-title--ondark">
+            <span class="work__title-desktop">Built for Web3,<br>Made to Perform</span>
+            <span class="work__title-mobile">Built for<br>Web3, Made to Perform</span>
+          </h2>
         </div>
         <p class="sec-intro">Over twelve years I've helped founders and enterprises across fintech, Web3, healthcare and SaaS turn complex products into experiences that feel effortless. Here's some of that work.</p>
       </div>
@@ -482,6 +485,11 @@
             <a href="https://www.behance.net/sparkouttech" target="_blank" rel="noopener" class="btn btn--yellow">View Full Portfolio</a>
           </div>
         </article>
+      </div>
+      <div class="work__mobile-controls" aria-label="Selected work controls">
+        <button type="button" data-work-prev aria-label="Previous project">&larr;</button>
+        <a href="https://www.behance.net/sparkouttech" target="_blank" rel="noopener">View All</a>
+        <button type="button" data-work-next aria-label="Next project">&rarr;</button>
       </div>
       <p class="work__hint" aria-hidden="true">Scroll to explore</p>
     </section>
@@ -818,7 +826,7 @@
   <script src="js/vendor/SplitText.min.js"></script>
   <script src="js/vendor/ScrollToPlugin.min.js"></script>
   <script src="js/vendor/swiper-bundle.min.js"></script>
-  <script src="js/main.js?v=20260804a"></script>
+  <script src="js/main.js?v=20260804b"></script>
 </body>
 </html>
 
