@@ -880,7 +880,511 @@ html {
   50% { translate: -5px -12px; }
 }
 
+/* Mobile portfolio sections: Figma nodes 76:1464, 76:1644, 76:1747 and 76:1895. */
+@media (max-width: 600px) {
+  .caps,
+  .leadership,
+  .workflow,
+  .recommendations {
+    min-height: 0;
+    overflow: clip;
+    background: #D5CFBE;
+  }
+
+  /* What I Bring */
+  .caps {
+    padding: 50px 0;
+  }
+
+  .caps__layout {
+    display: block;
+    width: calc(100% - 40px);
+    max-width: 335.2px;
+    margin: 0 auto;
+  }
+
+  .caps__heading {
+    position: relative;
+    top: auto;
+    gap: 28px;
+    padding: 0 0 29px;
+    background: transparent;
+  }
+
+  .caps__heading .pill {
+    display: inline-flex;
+    width: auto;
+    min-height: 34px;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    border: 1.2px solid #111;
+    font-size: 12.5px;
+    line-height: 19.375px;
+    letter-spacing: 1px;
+  }
+
+  .caps__title {
+    width: 100%;
+    max-width: none;
+    font-size: 44px;
+    line-height: 46.059px;
+    letter-spacing: 0;
+    text-wrap: wrap;
+  }
+
+  .caps__content {
+    display: block;
+  }
+
+  .caps__intro {
+    position: relative;
+    top: auto;
+    width: 100%;
+    background: transparent;
+  }
+
+  .caps__summary {
+    width: 100%;
+    color: rgba(17,17,17,0.68);
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .caps__path {
+    width: 100%;
+    gap: 8px;
+    margin-top: 34px;
+    font-size: 11px;
+    line-height: 17.05px;
+  }
+
+  .caps__path i {
+    width: 38px;
+    flex: 0 0 38px;
+  }
+
+  .caps__proofs {
+    width: 100%;
+    margin-top: 58px;
+    border-top: 0.8px solid rgba(17,17,17,0.2);
+  }
+
+  .cap,
+  .cap:first-child,
+  .cap:last-child {
+    display: grid;
+    width: 100%;
+    height: auto;
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 16px;
+    padding: 34px 0;
+    border-bottom: 0.8px solid rgba(17,17,17,0.2);
+    opacity: 1;
+    transform: none;
+    clip-path: none !important;
+  }
+
+  .cap:first-child { min-height: 408.5px; }
+  .cap:nth-child(2),
+  .cap:nth-child(3),
+  .cap:nth-child(5) { min-height: 396.93px; }
+  .cap:nth-child(4) { min-height: 430.25px; }
+  .cap:last-child {
+    min-height: 362.93px;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .cap__num {
+    padding-top: 5px;
+    font-size: 12px;
+    line-height: 18.6px;
+  }
+
+  .cap__eyebrow {
+    margin-bottom: 13px;
+    font-size: 14.5px;
+    line-height: 22.475px;
+    white-space: nowrap;
+  }
+
+  .cap__body h3 {
+    width: 100%;
+    max-width: none;
+    font-size: 34px;
+    line-height: 33.32px;
+  }
+
+  .cap__desc {
+    width: 100%;
+    max-width: none;
+    margin-top: 18px;
+    font-size: 14.5px;
+    line-height: 21.75px;
+  }
+
+  .cap__evidence {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 9px;
+    margin-top: 24px;
+  }
+
+  .cap__evidence li {
+    min-height: 15.5px;
+    font-size: 10px;
+    line-height: 15.5px;
+    white-space: nowrap;
+  }
+
+  .cap__evidence li::before {
+    top: 4.5px;
+  }
+
+  /* Leadership */
+  .leadership {
+    padding: 50px 0;
+  }
+
+  .leadership .sec-head {
+    display: block;
+    width: calc(100% - 40px);
+    max-width: 335.2px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .leadership .pill,
+  .workflow .pill {
+    display: grid;
+    width: 122.463px;
+    height: 33.775px;
+    place-items: center;
+    margin: 0 0 22px;
+    padding: 0;
+    border: 1.2px solid #111;
+    font-size: 12.5px;
+    line-height: 19.375px;
+    letter-spacing: 1px;
+  }
+
+  .leadership .sec-title,
+  .workflow .sec-title {
+    width: 100%;
+    margin: 0;
+    font-size: 44px;
+    line-height: 43.24px;
+    letter-spacing: 0;
+  }
+
+  .leadership .sec-sub,
+  .workflow .sec-sub {
+    width: 100%;
+    max-width: none;
+    margin: 24px 0 0;
+    color: rgba(17,17,17,0.68);
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .leadership__grid {
+    display: grid;
+    width: min(352px, calc(100% - 8px));
+    height: auto;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin: 0 auto;
+    padding: 38px 0 0;
+  }
+
+  .lcard,
+  .lcard:last-child {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 30px 24px;
+    border-radius: 8px;
+    opacity: 1;
+    transform: none;
+  }
+
+  .lcard__eyebrow {
+    height: 24px;
+    margin-bottom: 0;
+    padding-bottom: 7px;
+    font-size: 11px;
+    line-height: 17.05px;
+  }
+
+  .lcard h3 {
+    min-height: 72px;
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .lcard__metric {
+    min-height: 98.6px;
+    gap: 12px;
+    margin: 20px 0;
+    padding: 20.8px 0;
+  }
+
+  .lcard__metric b {
+    font-size: 63.784px;
+    line-height: 51.027px;
+  }
+
+  .lcard__metric span {
+    width: auto;
+    max-width: 148px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .lcard__desc {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .lcard ul {
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .lcard li {
+    font-size: 13px;
+    line-height: 20.15px;
+  }
+
+  /* Leadership quote */
+  .leadership__manifesto {
+    width: 100%;
+    height: 576px;
+    min-height: 576px;
+    gap: 20px;
+    padding: 50px 20px;
+    background: #111;
+  }
+
+  .leadership__manifesto .bigcta__title {
+    width: 100%;
+    max-width: 335.2px;
+    font-size: 45.024px;
+    line-height: 47.725px;
+  }
+
+  .leadership__manifesto .bigcta__sub {
+    width: 100%;
+    max-width: 335.2px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* How I Work: uses the same compact mobile card language as Leadership. */
+  .workflow {
+    padding: 50px 0;
+  }
+
+  .workflow .sec-head {
+    display: block;
+    width: calc(100% - 40px);
+    max-width: 335.2px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .workflow .sec-head > div {
+    display: block;
+    width: 100%;
+  }
+
+  .workflow__steps {
+    display: grid;
+    width: min(352px, calc(100% - 8px));
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin: 0 auto;
+    padding: 38px 0 0;
+  }
+
+  .wstep,
+  .wstep--wide {
+    grid-column: auto;
+    width: 100%;
+    height: auto;
+    min-height: 352px;
+    padding: 30px 24px;
+    border-radius: 8px;
+    opacity: 1;
+    transform: none;
+  }
+
+  .wstep__eyebrow {
+    height: 24px;
+    margin: 0;
+    padding-bottom: 7px;
+    font-size: 11px;
+    line-height: 17.05px;
+  }
+
+  .wstep h3,
+  .wstep--wide h3 {
+    width: 100%;
+    min-height: 0;
+    font-size: 34px;
+    line-height: 33.32px;
+  }
+
+  .wstep > p:not(.wstep__eyebrow),
+  .wstep--wide > p:not(.wstep__eyebrow) {
+    width: 100%;
+    margin-top: 18px;
+    font-size: 14.5px;
+    line-height: 21.75px;
+  }
+
+  .wstep__output,
+  .wstep--wide .wstep__output {
+    width: 100%;
+    margin-top: auto;
+    padding-top: 24px;
+    font-size: 10px;
+    line-height: 15.5px;
+  }
+
+  /* Recommendations */
+  .recommendations {
+    padding: 50px 0;
+  }
+
+  .recommendations__head {
+    display: flex;
+    width: calc(100% - 40px);
+    max-width: 335.2px;
+    flex-direction: column;
+    margin: 0 auto 40px;
+  }
+
+  .recommendations__topline {
+    display: contents;
+  }
+
+  .recommendations .pill {
+    order: 1;
+    width: 183px;
+    height: 34px;
+    margin: 0;
+    font-size: 12.5px;
+    line-height: 19.375px;
+  }
+
+  .recommendations .sec-title {
+    order: 2;
+    width: 100%;
+    margin: 20px 0 0;
+    font-size: 38px;
+    line-height: 37.24px;
+    letter-spacing: 0;
+  }
+
+  .recommendations .sec-sub {
+    order: 3;
+    width: 100%;
+    margin: 20px 0 0;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .recommendations__all {
+    order: 4;
+    align-self: flex-start;
+    gap: 10px;
+    height: 53.6px;
+    margin: 0;
+    padding: 20px 0 5.8px;
+    font-size: 13px;
+    line-height: 20.15px;
+  }
+
+  .recommendations__carousel {
+    width: calc(100% - 40px);
+    max-width: 335.2px;
+    height: 340px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .recommendations__carousel .swiper-slide,
+  .rcard {
+    width: 100%;
+    height: 340px;
+    min-height: 340px;
+  }
+
+  .rcard {
+    gap: 30px;
+    padding: 24px;
+  }
+
+  .rcard blockquote {
+    font-size: 18px;
+    line-height: 25px;
+    -webkit-line-clamp: 7;
+  }
+
+  .rcard__person {
+    gap: 20px;
+  }
+
+  .rcard__person b {
+    font-size: 15px;
+    line-height: 23.25px;
+    white-space: nowrap;
+  }
+
+  .rcard__person > div span {
+    font-size: 12px;
+    line-height: 18.6px;
+    white-space: nowrap;
+  }
+
+  .recommendations__controls {
+    width: calc(100% - 40px);
+    max-width: 335.2px;
+    grid-template-columns: 38.294px minmax(54px, 1fr) 38.294px;
+    gap: 12px;
+    margin: 12px auto 0;
+  }
+
+  .recommendations__arrow {
+    width: 38.294px;
+    height: 42px;
+    font-size: 22px;
+    line-height: 22px;
+  }
+
+  .recommendations__pagination {
+    font-size: 12px;
+    line-height: 18.6px;
+  }
+}
+
 @media (max-width: 374px) {
+  .rcard__person {
+    gap: 12px;
+  }
+
+  .rcard__person > div span {
+    font-size: 11px;
+  }
+
+  .leadership__manifesto .bigcta__title {
+    font-size: 42px;
+    line-height: 45px;
+  }
+
   .journey .sec-title {
     font-size: 47px;
     line-height: 0.92;
