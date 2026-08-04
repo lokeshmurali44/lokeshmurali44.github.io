@@ -533,9 +533,9 @@ html {
   .work .sec-title {
     width: 336px;
     max-width: 100%;
-    font-size: 44px;
-    line-height: 42px;
-    letter-spacing: -0.69px;
+    font-size: 40px;
+    line-height: 40px;
+    letter-spacing: 0;
   }
 
   .work__title-desktop {
@@ -1452,6 +1452,11 @@ html {
 }
 
 @media (max-width: 374px) {
+  .work .sec-title {
+    font-size: 37px;
+    line-height: 38px;
+  }
+
   .rcard__person {
     gap: 12px;
   }
