@@ -195,7 +195,15 @@
     const next = qs('[data-work-next]');
     if (!rail || !previous || !next) return;
 
+    const getPinnedTrigger = () => (window.innerWidth >= 901 ? window.workPinScrollTrigger : null);
     const updateControls = () => {
+      const pinnedTrigger = getPinnedTrigger();
+      if (pinnedTrigger) {
+        previous.disabled = pinnedTrigger.progress <= 0.002;
+        next.disabled = pinnedTrigger.progress >= 0.998;
+        return;
+      }
+
       const maxScroll = Math.max(0, rail.scrollWidth - rail.clientWidth);
       previous.disabled = rail.scrollLeft <= 2;
       next.disabled = rail.scrollLeft >= maxScroll - 2;
@@ -204,13 +212,27 @@
       const card = qs('.wcard', rail);
       if (!card) return;
       const gap = Number.parseFloat(getComputedStyle(rail).columnGap) || 0;
+
+      const pinnedTrigger = getPinnedTrigger();
+      if (pinnedTrigger) {
+        const work = qs('.work');
+        const travel = Math.max(1, rail.scrollWidth - (work?.clientWidth || window.innerWidth));
+        const progressStep = Math.min(1, ((card.getBoundingClientRect().width + gap) * 2) / travel);
+        const targetProgress = Math.max(0, Math.min(1, pinnedTrigger.progress + direction * progressStep));
+        const targetScroll = pinnedTrigger.start + (pinnedTrigger.end - pinnedTrigger.start) * targetProgress;
+        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+        return;
+      }
+
       rail.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap), behavior: 'smooth' });
     };
 
     previous.addEventListener('click', () => move(-1));
     next.addEventListener('click', () => move(1));
     rail.addEventListener('scroll', updateControls, { passive: true });
+    window.addEventListener('scroll', updateControls, { passive: true });
     window.addEventListener('resize', updateControls);
+    window.setTimeout(updateControls, 0);
     updateControls();
   }
 

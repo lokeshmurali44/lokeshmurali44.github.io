@@ -1355,6 +1355,102 @@ html {
   }
 }
 
+/* Tablet QA: keep section entrances visible and make horizontal work navigation explicit. */
+@media (min-width: 601px) and (max-width: 1100px) {
+  .reveal {
+    opacity: 0.65;
+    transform: translateY(6px);
+    transition-duration: 320ms;
+  }
+
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .work__hint {
+    display: none;
+  }
+
+  .work__mobile-controls {
+    position: absolute;
+    z-index: 9;
+    right: clamp(24px, 4vw, 50px);
+    bottom: 18px;
+    left: clamp(24px, 4vw, 50px);
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
+    align-items: center;
+    gap: 12px;
+    height: 42px;
+  }
+
+  .work__mobile-controls button,
+  .work__mobile-controls a {
+    display: grid;
+    height: 42px;
+    place-items: center;
+    border: 1px solid rgba(247, 245, 236, 0.68);
+    border-radius: 6px;
+    background: transparent;
+    color: #F7F5EC;
+  }
+
+  .work__mobile-controls button {
+    width: 42px;
+    padding: 0;
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .work__mobile-controls button:disabled {
+    border-color: rgba(247, 245, 236, 0.22);
+    color: rgba(247, 245, 236, 0.32);
+  }
+
+  .work__mobile-controls a {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+/* Portrait tablet cards should follow their content instead of reserving desktop heights. */
+@media (min-width: 601px) and (max-width: 900px) {
+  .leadership__grid {
+    height: auto;
+  }
+
+  .lcard,
+  .lcard:last-child {
+    height: auto;
+    min-height: 0;
+    padding: 30px 24px;
+  }
+
+  .wstep,
+  .wstep--wide {
+    height: auto;
+    min-height: 0;
+    padding: 30px 24px;
+  }
+
+  .wstep__output,
+  .wstep--wide .wstep__output {
+    margin-top: 28px;
+    padding-top: 22px;
+  }
+
+  .recommendations {
+    min-height: calc(100svh - 143px);
+    padding-top: 88px;
+    padding-bottom: 64px;
+  }
+}
+
 @media (max-width: 374px) {
   .rcard__person {
     gap: 12px;
