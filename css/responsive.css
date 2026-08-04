@@ -391,7 +391,33 @@ html {
   }
 
   .mobilebar {
-    display: none !important;
+    display: flex !important;
+    height: 65.6px;
+    padding: 12px 14px 12.8px;
+    background: rgba(222, 218, 205, 0.92);
+    border-bottom: 0.8px solid rgba(19, 19, 19, 0.12);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .mobilebar .side__logo {
+    display: flex;
+    width: auto !important;
+    height: 28px !important;
+    min-height: 28px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px !important;
+    border-radius: 8px !important;
+    font-size: 18px !important;
+    line-height: 27.9px;
+    letter-spacing: 0.18px;
+  }
+
+  .mobilebar__burger {
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
   }
 
   .hero,
