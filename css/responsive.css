@@ -434,6 +434,7 @@ html {
   .journey__grid > .jcard:nth-of-type(n) {
     width: 335px !important;
     max-width: 100% !important;
+    height: auto !important;
     min-height: 0 !important;
     padding: 30.8px !important;
     border: 0.8px solid rgba(255, 255, 255, 0.4);
@@ -450,23 +451,6 @@ html {
   .journey__grid > .jcard:nth-of-type(even) {
     align-self: flex-start !important;
     transform: rotate(-1.2deg);
-  }
-
-  .journey__grid > .jcard:nth-of-type(1),
-  .journey__grid > .jcard:nth-of-type(5),
-  .journey__grid > .jcard:nth-of-type(6) {
-    height: 351px;
-  }
-
-  .journey__grid > .jcard:nth-of-type(2),
-  .journey__grid > .jcard:nth-of-type(3),
-  .journey__grid > .jcard:nth-of-type(4),
-  .journey__grid > .jcard:nth-of-type(7) {
-    height: 314px;
-  }
-
-  .journey__grid > .jcard.expanded {
-    height: auto;
   }
 
   .journey__grid > .jcard:hover {
