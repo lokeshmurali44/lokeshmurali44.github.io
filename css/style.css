@@ -583,6 +583,7 @@ section, .tape, .footer { border-radius: 22px; }
   justify-content: center;
   padding: 18px 0;
 }
+.wcard[data-theme="gaulbridge"] .wcard__art { background: radial-gradient(130% 150% at 20% 0%, #291f52 0%, #130f28 60%, transparent 100%); color: #9B7DFF; }
 .wcard[data-theme="normax"]     .wcard__art { background: radial-gradient(130% 150% at 20% 0%, #26350f 0%, #141a08 60%, transparent 100%); color: #D8F548; }
 .wcard[data-theme="transgenie"] .wcard__art { background: radial-gradient(130% 150% at 80% 0%, #0f3535 0%, #081a1a 60%, transparent 100%); color: #4FD1C5; }
 .wcard[data-theme="healix"]     .wcard__art { background: radial-gradient(130% 150% at 30% 0%, #2d2438 0%, #16111c 60%, transparent 100%); color: #B39DFF; }
